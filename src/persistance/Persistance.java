@@ -15,8 +15,8 @@ public class Persistance {
     public static final String RUTA_ARCHIVO_USUARIOS = "src/resources/archivoUsuarios.txt";
     public static final String RUTA_ARCHIVO_LOG = "src/resources/Log.txt";
     public static final String RUTA_ARCHIVO_OBJETOS = "src/resources/archivoObjetos.txt";
-    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_BINARIO = "src/resources/Red.dat";
-    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_XML = "src/resources/Red.xml";
+    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_BINARIO = "src/resources/Notes.dat";
+    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_XML = "src/resources/Notes.xml";
 
 
 

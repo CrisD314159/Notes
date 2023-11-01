@@ -3,9 +3,9 @@ package controllers;
 
 
 import exceptions.UsuarioException;
-import javafx.scene.image.Image;
-import model.Admin;
+import lists.ListaSimple;
 import model.Notes;
+import model.Process;
 import model.User;
 import persistance.Persistance;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ModelFactoryController implements Runnable{
 
-	Notes notes;
+	Notes notes = new Notes();
 
 	Thread guardarXml;
 	Thread guardarBinario;
@@ -23,7 +23,40 @@ public class ModelFactoryController implements Runnable{
 
 
 	public User obtenerUsuario(String id) throws UsuarioException {
-		return notes.buscarVendeor(id);
+		return getNotes().buscarVendeor(id);
+	}
+
+	public User getUserByAccount(String user, String password) {
+		return getNotes().getUserByAccount(user, password);
+	}
+
+	public boolean verifyAccount(String user, String password) {
+		return getNotes().verifyAccount(user, password);
+	}
+
+	public boolean verifyUser(String id, String user) {
+		return getNotes().verifyUser(id, user);
+	}
+
+	public boolean createUser(String name, String id, String user, String password) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().createUser(name, id, user, password);
+			guardarResourceXML();
+		} catch (Exception e){
+			throw new RuntimeException(e);
+
+		}
+		return trigger;
+	}
+
+	public ArrayList<Process> getUserProcessList(User signedUser) {
+		ArrayList<Process> processes = new ArrayList<Process>();
+		ListaSimple<Process> lista = signedUser.getProcessList();
+		for (int i = 0; i <lista.getSize() ; i++) {
+			processes.add(lista.getNodeValue(i));
+		}
+		return processes;
 	}
 
 
@@ -142,14 +175,6 @@ public class ModelFactoryController implements Runnable{
 
 		notes.getListaUsuarios().add(cliente);
 
-		Cuenta cuenta1 = new Cuenta("admin1", "3456");
-		Administrador admin = new Administrador();
-		admin.setNombre("Cristian");
-		admin.setApellido("Vargas");
-		admin.setCedula("1092850502");
-		admin.setDireccion("Calle 13");
-		admin.setCuenta(cuenta1);
-		notes.getListaAdministradores().add(admin);
 
 
 

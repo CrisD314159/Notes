@@ -8,8 +8,10 @@ public class Process {
     private String id;
     private String name;
     private ListaSimple<Activity> activitiesList = new ListaSimple<Activity>();
+    private Integer size;
 
     public Process(String id, String name) {
+        this.size = activitiesList.getSize();
         this.id = id;
         this.name = name;
     }
@@ -39,6 +41,15 @@ public class Process {
 
     public void setActivitiesList(ListaSimple<Activity> activitiesList) {
         this.activitiesList = activitiesList;
+    }
+
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
     }
 
     @Override

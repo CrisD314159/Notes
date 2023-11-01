@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.UsuarioException;
 import lists.ListaSimple;
 
 import java.util.ArrayList;
@@ -10,6 +11,16 @@ public class Notes {
     ListaSimple<Process> processList = new ListaSimple<Process>();
 
     public Notes() {
+        inicializarData();
+    }
+
+    private void inicializarData() {
+        Account a = new Account("pedro", "123");
+        User p = new User("pedro", "12", a);
+        Process p1 = new Process("01", "desayuno");
+        p.getProcessList().addToEnd(p1);
+
+        getUsersList().add(p);
     }
 
     public ArrayList<User> getUsersList() {
@@ -54,5 +65,55 @@ public class Notes {
     //CRUD AND DATA ADMIN METHODS
     public User buscarVendeor(String id) {
         return null;
+    }
+
+    public boolean verifyAccount(String user, String password) {
+        for (User userAux:usersList) {
+            Account auxAccount = userAux.getAccount();
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public User getUserByAccount(String user, String password) {
+        User signedUser = new User();
+        for (User userAux:usersList) {
+            Account auxAccount = userAux.getAccount();
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+                signedUser = userAux;
+            }
+        }
+        return signedUser;
+    }
+
+    public boolean verifyUser(String id, String user) {
+        for (User userAux: usersList) {
+            Account auxAccount = userAux.getAccount();
+            if (userAux.getId().equals(id) && auxAccount.getUser().equals(user)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean createUser(String name, String id, String user, String password) {
+        User newUser = new User();
+        Account account = new Account(user, password);
+        try {
+            if (verifyUser(id, user)){
+                throw  new UsuarioException("El usuario ya existe");
+            }else {
+                newUser.setName(name);
+                newUser.setId(id);
+                newUser.setAccount(account);
+                getUsersList().add(newUser);
+                return true;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

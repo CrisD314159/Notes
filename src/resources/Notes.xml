@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="19.0.2" class="java.beans.XMLDecoder">
+ <object class="model.Notes" id="Notes0">
+  <void property="usersList">
+   <void method="add">
+    <object class="model.User">
+     <void property="account">
+      <object class="model.Account">
+       <void property="password">
+        <string>21</string>
+       </void>
+       <void property="user">
+        <string>mario</string>
+       </void>
+      </object>
+     </void>
+     <void property="id">
+      <string>21</string>
+     </void>
+     <void property="name">
+      <string>mario</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

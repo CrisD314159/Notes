@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="549.0" prefWidth="540.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProcessViewController">
+   <children>
+      <Label layoutX="29.0" layoutY="29.0" text="Mis procesos">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="338.0" layoutY="39.0" text="Name here">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="471.0" layoutY="35.0" mnemonicParsing="false" onAction="#goBack" text="Salir" />
+      <Line endX="430.0" layoutX="110.0" layoutY="65.0" startX="-110.0" style="-fx-opacity: .2;" />
+      <TableView fx:id="processTable" layoutY="82.0" prefHeight="350.0" prefWidth="542.0" style="-fx-background-color: transparent;">
+        <columns>
+          <TableColumn fx:id="processNameColumn" prefWidth="372.0" style="-fx-background-color: transparent;" text="Nombre del proceso" />
+          <TableColumn fx:id="activityNumberColumn" prefWidth="167.0" style="-fx-background-color: transparent;" text="Número de actividades" />
+        </columns>
+      </TableView>
+      <Button fx:id="openProcess" layoutX="415.0" layoutY="486.0" mnemonicParsing="false" onAction="#openProcess" text="Open process" />
+      <Button fx:id="createButton" layoutX="227.0" layoutY="486.0" mnemonicParsing="false" onAction="#createProcess" text="Create process" />
+      <Button fx:id="deleteButton" layoutX="55.0" layoutY="487.0" mnemonicParsing="false" onAction="#deleteProcess" text="Delete process" />
+   </children>
+</AnchorPane>
