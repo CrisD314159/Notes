@@ -38,3 +38,45 @@ Oct 31, 2023 10:02:09 PM persistance.ArchivoUtil guardarRegistroLog
 INFO: InicioApp,Welcome to notes,2023-10-31
 Oct 31, 2023 10:05:26 PM persistance.ArchivoUtil guardarRegistroLog
 INFO: InicioApp,Welcome to notes,2023-10-31
+Nov 01, 2023 8:12:45 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 8:13:58 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 8:27:36 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 8:52:24 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 8:56:57 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 8:58:56 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:01:30 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:03:47 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:06:08 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:07:08 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:10:55 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:11:19 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:12:42 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:13:08 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:13:57 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:15:02 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:16:12 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:16:57 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:19:15 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:21:38 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01
+Nov 01, 2023 9:24:39 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-01

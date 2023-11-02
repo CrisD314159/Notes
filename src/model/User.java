@@ -2,9 +2,13 @@ package model;
 
 import lists.ListaSimple;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String name;
     private String id;
     private Account account;
@@ -70,5 +74,22 @@ public class User {
                 "account=" + account +
                 ", processList=" + processList +
                 '}';
+    }
+
+    public boolean deleteProcess(Process selectedProcess) {
+        for (int i = 0; i < getProcessList().getSize(); i++) {
+            getProcessList().eliminar(selectedProcess);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean verifyProcess(String id) {
+        Process aux;
+        for (int i = 0; i < getProcessList().getSize(); i++) {
+            aux = getProcessList().getNodeValue(i);
+            if(aux.getId().equals(id)) return true;
+        }
+        return false;
     }
 }

@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Process;
 import model.User;
@@ -41,6 +38,12 @@ public class ProcessViewController {
     private Label nameLabel;
 
     @FXML
+    private TextField idField;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
     private Button openProcess;
 
     @FXML
@@ -66,6 +69,7 @@ public class ProcessViewController {
         this.main = main;
         processTable.getItems().clear();
         processTable.setItems(getProcessList());
+        nameLabel.setText(signedUser.getName());
     }
     public void setLoggedUser(User signedUser) {
         this.signedUser = signedUser;
@@ -78,11 +82,67 @@ public class ProcessViewController {
 
     @FXML
     void createProcess(ActionEvent event) {
+        String id = "";
+        String name = "";
+        id = idField.getText();
+        name = nameField.getText();
+        if(!verifyFields(id, name)){
+            if (!singleton.verifyProcess(signedUser, id)){
+                Process process = singleton.createProcess(signedUser, id, name);
+                if (process != null){
+                    processTable.getItems().clear();
+                    listaProcesosData.addAll(singleton.getUserProcessList(signedUser));
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Listo");
+                    alert.setContentText("Proceso creado");
+                    alert.showAndWait();
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("Ocurrio un error a la hora de crear el proceso");
+                    alert.showAndWait();
+                }
+
+            }else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Atención");
+                alert.setContentText("El proceso ya existe");
+                alert.showAndWait();
+            }
+            processTable.refresh();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("Rellena todos los campos");
+            alert.showAndWait();
+        }
+
+
+
+    }
+
+    private boolean verifyFields(String id, String name) {
+        if (name.equals(""))return true;
+        if (id.equals(""))return true;
+        return false;
 
     }
 
     @FXML
     void deleteProcess(ActionEvent event) {
+        if (singleton.deleteUserProcess(signedUser, selectedProcess)){
+            listaProcesosData.remove(selectedProcess);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Listo");
+            alert.setContentText("Proceso eliminado");
+            alert.showAndWait();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Ocurrio un error a la hora de eliminar el proceso");
+            alert.showAndWait();
+        }
+        processTable.refresh();
 
     }
 

@@ -2,9 +2,13 @@ package model;
 
 import lists.ListaSimple;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Process {
+public class Process implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String id;
     private String name;
     private ListaSimple<Activity> activitiesList = new ListaSimple<Activity>();

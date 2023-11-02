@@ -7,18 +7,18 @@
      <void property="account">
       <object class="model.Account">
        <void property="password">
-        <string>21</string>
+        <string>13</string>
        </void>
        <void property="user">
-        <string>mario</string>
+        <string>cris</string>
        </void>
       </object>
      </void>
      <void property="id">
-      <string>21</string>
+      <string>1313</string>
      </void>
      <void property="name">
-      <string>mario</string>
+      <string>cris</string>
      </void>
     </object>
    </void>

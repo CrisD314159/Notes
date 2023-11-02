@@ -1,8 +1,12 @@
 package lists;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class ListaSimple<T> implements Iterable<T> {
+public class ListaSimple<T> implements Iterable<T>, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private Nodo<T> nodoPrimero;
     private Nodo<T> nodoUltimo;
     private int tamanio;

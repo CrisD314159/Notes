@@ -3,10 +3,14 @@ package model;
 import exceptions.UsuarioException;
 import lists.ListaSimple;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Notes {
+public class Notes implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     ArrayList<User> usersList = new ArrayList<User>();
     ListaSimple<Process> processList = new ListaSimple<Process>();
 
@@ -89,6 +93,7 @@ public class Notes {
     }
 
     public boolean verifyUser(String id, String user) {
+        System.out.println(usersList.toString());
         for (User userAux: usersList) {
             Account auxAccount = userAux.getAccount();
             if (userAux.getId().equals(id) && auxAccount.getUser().equals(user)){
@@ -115,5 +120,29 @@ public class Notes {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean deleteUserProcess(User signedUser, Process selectedProcess) {
+        boolean trigger = false;
+        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
+            trigger = signedUser.deleteProcess(selectedProcess);
+        }
+        return trigger;
+    }
+
+    public boolean verifyprocess(User signedUser, String id) {
+        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
+            return signedUser.verifyProcess(id);
+        }
+        return false;
+    }
+
+    public Process createprocess(User signedUser, String id, String name) {
+        Process process = new Process(id, name);
+        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
+            signedUser.getProcessList().addToEnd(process);
+            return process;
+        }
+        return null;
     }
 }

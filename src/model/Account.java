@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String user;
     private String password;
 

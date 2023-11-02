@@ -59,6 +59,32 @@ public class ModelFactoryController implements Runnable{
 		return processes;
 	}
 
+	public boolean deleteUserProcess(User signedUser, Process selectedProcess) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().deleteUserProcess(signedUser, selectedProcess);
+			guardarResourceXML();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public boolean verifyProcess(User signedUser, String id) {
+		return getNotes().verifyprocess(signedUser, id);
+	}
+
+	public Process createProcess(User signedUser, String id, String name) {
+		Process process;
+		try {
+			process = getNotes().createprocess(signedUser, id, name);
+			guardarResourceXML();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return process;
+	}
+
 
 	//------------------------------  Singleton ------------------------------------------------
 	// Clase estatica oculta. Tan solo se instanciara el singleton una vez

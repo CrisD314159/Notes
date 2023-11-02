@@ -1,6 +1,11 @@
 package lists;
 
-public class Cola<T> {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Cola<T> implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     public Nodo<T> nodoPrimero, nodoUltimo;
     public int tamanio;

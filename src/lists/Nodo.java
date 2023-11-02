@@ -1,6 +1,11 @@
 package lists;
 
-public class Nodo<T> {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Nodo<T> implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private Nodo<T> siguienteNodo;
     private T valorNodo;
