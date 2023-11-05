@@ -1,19 +1,15 @@
 package application;
 
-import controllers.LoginController;
-import controllers.ProcessViewController;
-import controllers.RecoverPasswordController;
-import controllers.SignUpView;
+import controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Notes;
+import model.Process;
 import model.User;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class Main extends Application {
     Notes notes = new Notes();
@@ -92,5 +88,41 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
 
+    }
+
+    public void openActivitiesView(Process selectedProcess, User signedUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/ActivitiesView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        ActivitiesController controller = fxmlLoader.getController();
+        controller.setSelectedProcess(selectedProcess);
+        controller.setSignedUser(signedUser);
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void openCreateActivity(Process selectedProcess, User signedUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateActivityView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        CreateActivityController controller = fxmlLoader.getController();
+        controller.setSelectedProcess(selectedProcess);
+        controller.setSignedUser(signedUser);
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
     }
 }

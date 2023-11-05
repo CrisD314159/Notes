@@ -22,6 +22,12 @@ public class Notes implements Serializable {
         Account a = new Account("pedro", "123");
         User p = new User("pedro", "12", a);
         Process p1 = new Process("01", "desayuno");
+        Activity a1 = new Activity("cafe","Preguntar por el cafe",false, false);
+        Task t1 = new Task("Prepara el cafe", false, "5 minutos", true);
+        a1.getTasksList().encolar(t1);
+        p1.getActivitiesList().addToEnd(a1);
+        p1.setSize(p1.getSize()+1);
+
         p.getProcessList().addToEnd(p1);
 
         getUsersList().add(p);
@@ -144,5 +150,37 @@ public class Notes implements Serializable {
             return process;
         }
         return null;
+    }
+
+    public boolean createActivity(Process process, String name, String description, boolean mustDo) {
+        Activity activity = new Activity(name, description, mustDo, false);
+        if (process!= null){
+            if(!verifyActivity(process, name)){
+                process.getActivitiesList().addToEnd(activity);
+                process.setSize(process.getSize()+1);
+                return true;
+
+            }
+        }
+        return false;
+    }
+
+    private boolean verifyActivity(Process process, String name) {
+        for (Activity activity: process.getActivitiesList()) {
+            if (activity.getName().equals(name)) return true;
+        }
+        return false;
+    }
+
+    public boolean deleteActivity(Process selectedProcess, Activity selectedActivity) {
+        if (selectedProcess != null){
+            if (verifyActivity(selectedProcess, selectedActivity.getName())) {
+                selectedProcess.getActivitiesList().eliminar(selectedActivity);
+                selectedProcess.setSize(selectedProcess.getSize()-1);
+                return true;
+            }
+
+        }
+        return false;
     }
 }

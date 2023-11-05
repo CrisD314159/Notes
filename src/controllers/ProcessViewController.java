@@ -153,7 +153,15 @@ public class ProcessViewController {
     }
 
     @FXML
-    void openProcess(ActionEvent event) {
+    void openProcess(ActionEvent event) throws IOException {
+        if(selectedProcess != null){
+            main.openActivitiesView(selectedProcess, signedUser);
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("Seleccione algún proceso antes de continuar");
+            alert.showAndWait();
+        }
 
     }
 

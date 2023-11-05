@@ -3,10 +3,10 @@ package controllers;
 
 
 import exceptions.UsuarioException;
+import lists.Cola;
 import lists.ListaSimple;
-import model.Notes;
+import model.*;
 import model.Process;
-import model.User;
 import persistance.Persistance;
 
 import java.io.IOException;
@@ -83,6 +83,44 @@ public class ModelFactoryController implements Runnable{
 			throw new RuntimeException(e);
 		}
 		return process;
+	}
+
+	public ArrayList<Activity> getProcessActivities(Process selectedProcess) {
+		ArrayList<Activity> activities = new ArrayList<Activity>();
+		ListaSimple<Activity> lista = selectedProcess.getActivitiesList();
+		for (int i = 0; i <lista.getSize() ; i++) {
+			activities.add(lista.getNodeValue(i));
+		}
+		return activities;
+	}
+
+	public ArrayList<Task> getActivityTasks(Activity activity) {
+		ArrayList<Task> tasks = new ArrayList<Task>();
+		Cola<Task> lista = activity.getTasksList();
+		for (int i = 0; i <lista.getTamano() ; i++) {
+			tasks.add(lista.desencolar());
+		}
+		return tasks;
+	}
+
+	public boolean createActivity(Process process, String name, String description, boolean mustDo) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().createActivity(process, name, description, mustDo);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public boolean deleteActivity(Process selectedProcess, Activity selectedActivity) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().deleteActivity(selectedProcess, selectedActivity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
 	}
 
 
