@@ -130,19 +130,27 @@ public class ProcessViewController {
 
     @FXML
     void deleteProcess(ActionEvent event) {
-        if (singleton.deleteUserProcess(signedUser, selectedProcess)){
-            listaProcesosData.remove(selectedProcess);
+        if(selectedProcess.getSize() == 0){
+            if (singleton.deleteUserProcess(signedUser, selectedProcess)){
+                listaProcesosData.remove(selectedProcess);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Listo");
+                alert.setContentText("Proceso eliminado");
+                alert.showAndWait();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Ocurrio un error a la hora de eliminar el proceso");
+                alert.showAndWait();
+            }
+            processTable.refresh();
+        }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Listo");
-            alert.setContentText("Proceso eliminado");
-            alert.showAndWait();
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Ocurrio un error a la hora de eliminar el proceso");
+            alert.setTitle("Atención");
+            alert.setContentText("para eliminar un proceso, este no debe tener actividades");
             alert.showAndWait();
         }
-        processTable.refresh();
+
 
     }
 

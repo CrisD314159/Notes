@@ -15,10 +15,11 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <TableView fx:id="activityTable" layoutX="14.0" layoutY="71.0" prefHeight="200.0" prefWidth="369.0">
+      <TableView fx:id="activityTable" layoutX="14.0" layoutY="71.0" prefHeight="200.0" prefWidth="445.0">
         <columns>
           <TableColumn fx:id="nombreActividadColum" prefWidth="137.0" text="Nombre" />
           <TableColumn fx:id="descriptionActivityColumn" prefWidth="231.0" text="Descripcion" />
+            <TableColumn fx:id="mustActivityColum" prefWidth="75.0" text="Obligatoria" />
         </columns>
       </TableView>
       <TableView fx:id="taskTable" layoutX="14.0" layoutY="288.0" prefHeight="200.0" prefWidth="369.0">

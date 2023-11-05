@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="19.0.2" class="java.beans.XMLDecoder">
- <object class="model.Notes" id="Notes0">
-  <void id="ListaSimple0" property="processList">
-   <void id="Integer0" property="size"/>
-  </void>
-  <void id="ArrayList0" property="usersList">
-   <void id="User0" index="0">
-    <void property="processList">
-     <void property="nodoPrimero">
-      <null/>
-     </void>
-     <void property="size">
-      <object idref="Integer0"/>
-     </void>
-    </void>
-   </void>
-  </void>
- </object>
+ <object class="model.Notes"/>
 </java>

@@ -97,8 +97,8 @@ public class ModelFactoryController implements Runnable{
 	public ArrayList<Task> getActivityTasks(Activity activity) {
 		ArrayList<Task> tasks = new ArrayList<Task>();
 		Cola<Task> lista = activity.getTasksList();
-		for (int i = 0; i <lista.getTamano() ; i++) {
-			tasks.add(lista.desencolar());
+		for (int i = 0; i <lista.size() ; i++) {
+			tasks.add(lista.getNodeValue(i));
 		}
 		return tasks;
 	}
@@ -117,6 +117,18 @@ public class ModelFactoryController implements Runnable{
 		boolean trigger = false;
 		try {
 			trigger = getNotes().deleteActivity(selectedProcess, selectedActivity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+
+
+	public boolean updateActivity(Activity selectedActivity, String name, String description, boolean mustDo) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().updateActivity(selectedActivity, name, description, mustDo);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

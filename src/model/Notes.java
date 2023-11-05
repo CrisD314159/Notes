@@ -183,4 +183,17 @@ public class Notes implements Serializable {
         }
         return false;
     }
+
+
+
+    public boolean updateActivity(Activity selectedActivity, String name, String description, boolean mustDo) {
+        if(selectedActivity != null){
+            selectedActivity.setName(name);
+            selectedActivity.setDescription(description);
+            selectedActivity.setMustDo(mustDo);
+            return true;
+        }
+
+    return false;
+    }
 }

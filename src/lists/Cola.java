@@ -51,6 +51,35 @@ public class Cola<T> implements Serializable {
         return dato;
     }
 
+    public T getNodeValue(int indice) {
+
+        Nodo<T> nodoTemporal = null;
+        int contador = 0;
+
+        if(indiceValido(indice))
+        {
+            nodoTemporal = nodoPrimero;
+
+            while (contador < indice) {
+
+                nodoTemporal = nodoTemporal.getSiguienteNodo();
+                contador++;
+            }
+        }
+
+        if(nodoTemporal != null)
+            return nodoTemporal.getNodeValue();
+        else
+            return null;
+    }
+
+    private boolean indiceValido(int indice) {
+        if( indice>=0 && indice<tamanio ) {
+            return true;
+        }
+        throw new RuntimeException("�ndice no v�lido");
+    }
+
     /**
      * Verifica si la Cola est� vac�a
      * @return true si est� vac�a
@@ -86,7 +115,7 @@ public class Cola<T> implements Serializable {
     /**
      * @return the tamano
      */
-    public int getTamano() {
+    public int size() {
         return tamanio;
     }
 
@@ -100,7 +129,7 @@ public class Cola<T> implements Serializable {
         Cola<T> clon1 = clone();
         Cola<T> clon2 = cola.clone();
 
-        if(clon1.getTamano() == clon2.getTamano()) {
+        if(clon1.size() == clon2.size()) {
 
             while( !clon1.estaVacia() ) {
                 if( !clon1.desencolar().equals( clon2.desencolar() ) ) {

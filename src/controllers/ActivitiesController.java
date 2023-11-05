@@ -61,6 +61,9 @@ public class ActivitiesController {
 
     @FXML
     private TableColumn<Task, Boolean> mustTaskColumn;
+    @FXML
+    private TableColumn<Activity, Boolean> mustActivityColum;
+
 
     @FXML
     private TableColumn<Activity, String> nombreActividadColum;
@@ -89,7 +92,7 @@ public class ActivitiesController {
 
     @FXML
     void deleteActivity(ActionEvent event) {
-        if(listaTareas.size() == 0){
+        if(selectedActivity.getTasksList().size() == 0){
             boolean deleteActivity = singleton.deleteActivity(selectedProcess, selectedActivity);
             if (deleteActivity) listaActividades.remove(selectedActivity);
             activityTable.refresh();
@@ -103,7 +106,10 @@ public class ActivitiesController {
     }
 
     @FXML
-    void editActivity(ActionEvent event) {
+    void editActivity(ActionEvent event) throws IOException {
+        if (selectedActivity!= null){
+            main.openEditActivity(selectedActivity, selectedProcess, signedUser);
+        }
 
     }
 
@@ -121,6 +127,7 @@ public class ActivitiesController {
     void initialize(){
         this.nombreActividadColum.setCellValueFactory(new PropertyValueFactory<>("name"));
         this.descriptionActivityColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        this.mustActivityColum.setCellValueFactory(new PropertyValueFactory<>("mustDo"));
 
         this.descriptionTaskColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         this.mustTaskColumn.setCellValueFactory(new PropertyValueFactory<>("mustDo"));
