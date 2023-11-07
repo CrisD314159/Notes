@@ -44,6 +44,11 @@ public class SignUpView {
 
     }
 
+    /**
+     * Calls the singleton to create a new user
+     * @param event
+     */
+
     @FXML
     void signUpAction(ActionEvent event) {
         String name = "";
@@ -91,6 +96,14 @@ public class SignUpView {
         passwordField.setText("");
     }
 
+    /**
+     * verifies the empty fields
+     * @param name
+     * @param id
+     * @param user
+     * @param password
+     * @return
+     */
     private boolean verifyFields(String name, String id, String user, String password) {
         if (name.equals("")){
             return true;

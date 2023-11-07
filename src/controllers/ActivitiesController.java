@@ -71,12 +71,23 @@ public class ActivitiesController {
     @FXML
     private TableView<Task> taskTable;
 
+    /**
+     * Returns to the previous view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goBack(ActionEvent event) throws IOException {
         main.openProcessView(signedUser);
 
     }
 
+
+    /**
+     * This method opens the create activity view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void createActivity(ActionEvent event) throws IOException {
         if (selectedProcess != null) {
@@ -85,11 +96,21 @@ public class ActivitiesController {
 
     }
 
+    /**
+     * This method opens the create task view
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void createTaks(ActionEvent event) {
+    void createTaks(ActionEvent event) throws IOException {
+        main.openCreateTask(signedUser, selectedProcess, selectedActivity);
 
     }
 
+    /**
+     * Calls the singleton class for delete a user
+     * @param event
+     */
     @FXML
     void deleteActivity(ActionEvent event) {
         if(selectedActivity.getTasksList().size() == 0){
@@ -105,6 +126,11 @@ public class ActivitiesController {
 
     }
 
+    /**
+     * Opens edit activity view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void editActivity(ActionEvent event) throws IOException {
         if (selectedActivity!= null){

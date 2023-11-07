@@ -41,6 +41,11 @@ public class EditActivityController {
         main.openActivitiesView(selectedProcess, signeduser);
     }
 
+    /**
+     * Calls the singleton to update the activity selected
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void updateActivity(ActionEvent event) throws IOException {
         String name ="";
