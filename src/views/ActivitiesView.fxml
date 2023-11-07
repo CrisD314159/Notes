@@ -5,37 +5,64 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="502.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ActivitiesController">
+<AnchorPane prefHeight="502.0" prefWidth="736.0" style="-fx-background-color: #a5c9c3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ActivitiesController">
    <children>
-      <Label layoutX="29.0" layoutY="14.0" text="Mis actividades">
+      <TableView fx:id="activityTable" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="445.0" style="-fx-background-color: #44b178;">
+        <columns>
+          <TableColumn fx:id="nombreActividadColum" prefWidth="137.0" style="-fx-background-color: #44b178;" text="Nombre" />
+          <TableColumn fx:id="descriptionActivityColumn" prefWidth="231.0" style="-fx-background-color: #44b178;" text="Descripcion" />
+            <TableColumn fx:id="mustActivityColum" prefWidth="75.0" style="-fx-background-color: #44b178;" text="Obligatoria" />
+        </columns>
+      </TableView>
+      <TableView fx:id="taskTable" layoutX="14.0" layoutY="288.0" prefHeight="200.0" prefWidth="445.0" style="-fx-background-color: #fbc474;">
+        <columns>
+          <TableColumn fx:id="descriptionTaskColumn" prefWidth="303.0" style="-fx-background-color: #fbc474;" text="Descripcion" />
+          <TableColumn fx:id="mustTaskColumn" minWidth="0.0" prefWidth="141.0" style="-fx-background-color: #fbc474;" text="Obligatoria" />
+        </columns>
+      </TableView>
+      <Line endX="633.0" layoutX="115.0" layoutY="279.0" startX="-115.0" />
+      <Button fx:id="createActivityButton" layoutX="494.0" layoutY="71.0" mnemonicParsing="false" onAction="#createActivity" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Crear actividad">
          <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <TableView fx:id="activityTable" layoutX="14.0" layoutY="71.0" prefHeight="200.0" prefWidth="445.0">
-        <columns>
-          <TableColumn fx:id="nombreActividadColum" prefWidth="137.0" text="Nombre" />
-          <TableColumn fx:id="descriptionActivityColumn" prefWidth="231.0" text="Descripcion" />
-            <TableColumn fx:id="mustActivityColum" prefWidth="75.0" text="Obligatoria" />
-        </columns>
-      </TableView>
-      <TableView fx:id="taskTable" layoutX="14.0" layoutY="288.0" prefHeight="200.0" prefWidth="369.0">
-        <columns>
-          <TableColumn fx:id="descriptionTaskColumn" prefWidth="303.0" text="Descripcion" />
-          <TableColumn fx:id="mustTaskColumn" minWidth="0.0" prefWidth="65.0" text="Obligatoria" />
-        </columns>
-      </TableView>
-      <Line endX="604.0" layoutX="115.0" layoutY="279.0" startX="-115.0" />
-      <Button fx:id="createActivityButton" layoutX="494.0" layoutY="71.0" mnemonicParsing="false" onAction="#createActivity" text="Crear actividad" />
-      <Button fx:id="editActivityButton" layoutX="493.0" layoutY="194.0" mnemonicParsing="false" onAction="#editActivity" text="Editar actividad" />
-      <Button fx:id="deleteActivityButton" layoutX="494.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="26.0" prefWidth="125.0" text="Marcar Completada" />
-      <Button fx:id="createTaskButton" layoutX="505.0" layoutY="318.0" mnemonicParsing="false" onAction="#createTaks" text="Crear tarea" />
-      <Button fx:id="editTaskButton" layoutX="504.0" layoutY="437.0" mnemonicParsing="false" onAction="#editTask" text="Editar tarea" />
-      <Button fx:id="markAsDoneButton" layoutX="505.0" layoutY="375.0" mnemonicParsing="false" onAction="#markAsDone" text="Marcar Completada" />
-      <Line endX="604.5" layoutX="115.0" layoutY="44.0" startX="-115.0" />
-      <Button fx:id="goBackButton" layoutX="630.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Atrás" />
+            <Font name="Georgia" size="14.0" />
+         </font></Button>
+      <Button fx:id="editActivityButton" layoutX="493.0" layoutY="194.0" mnemonicParsing="false" onAction="#editActivity" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Editar actividad">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font></Button>
+      <Button fx:id="deleteActivityButton" layoutX="494.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="26.0" prefWidth="151.0" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Marcar Completada">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font></Button>
+      <Button fx:id="createTaskButton" layoutX="505.0" layoutY="318.0" mnemonicParsing="false" onAction="#createTaks" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Crear tarea">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font></Button>
+      <Button fx:id="editTaskButton" layoutX="504.0" layoutY="437.0" mnemonicParsing="false" onAction="#editTask" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Editar tarea">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font></Button>
+      <Button fx:id="markAsDoneButton" layoutX="505.0" layoutY="375.0" mnemonicParsing="false" onAction="#markAsDone" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Marcar Completada">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font></Button>
+      <Line endX="630.0" layoutX="115.0" layoutY="44.0" startX="-115.0" />
+      <Pane layoutX="-7.0" layoutY="-3.0" prefHeight="46.0" prefWidth="755.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label layoutX="14.0" layoutY="10.0" text="Mis actividades" textFill="WHITE">
+               <font>
+                  <Font name="Cambria Bold" size="23.0" />
+               </font>
+            </Label>
+            <Button fx:id="goBackButton" layoutX="653.0" layoutY="9.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Atrás">
+               <font>
+                  <Font name="Georgia" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
