@@ -43,6 +43,11 @@ public class LoginController {
 
     }
 
+    /**
+     * Calls the singleton to verify the account
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void signInAction(ActionEvent event) throws IOException {
         String user = "";
@@ -68,6 +73,12 @@ public class LoginController {
 
     }
 
+    /**
+     * Verifies the empty fields
+     * @param user
+     * @param password
+     * @return
+     */
     private boolean verifyFields(String user, String password) {
         if (user.equals("")){
             return false;

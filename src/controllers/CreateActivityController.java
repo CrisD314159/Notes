@@ -33,6 +33,12 @@ public class CreateActivityController {
     @FXML
     private TextField nameField;
 
+
+    /**
+     * Calls the singleton to create an activity
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void createActivity(ActionEvent event) throws IOException {
         String name = "";
@@ -53,6 +59,12 @@ public class CreateActivityController {
 
     }
 
+    /**
+     * Verifies empty fields
+     * @param name
+     * @param description
+     * @return
+     */
     private boolean verifyFields(String name, String description) {
         if(name.equals("")) return true;
         if(description.equals(""))return true;

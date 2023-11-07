@@ -25,6 +25,7 @@ public class Main extends Application {
 
     }
 
+
     public void inicializarLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -147,5 +148,27 @@ public class Main extends Application {
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void openCreateTask(User signedUser, Process selectedProcess, Activity selectedActivity) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateTaskView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        CreateTaskController controller = fxmlLoader.getController();
+        controller.setSelectedProcess(selectedProcess);
+        controller.setSignedUser(signedUser);
+        controller.setSelectedActivity(selectedActivity);
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+
+
+
     }
 }
