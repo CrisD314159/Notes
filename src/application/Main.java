@@ -20,6 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+
         inicializarLogin();
 
     }
@@ -27,6 +28,7 @@ public class Main extends Application {
     public void inicializarLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+
 
         LoginController controller = fxmlLoader.getController();
         controller.setMain(this);
