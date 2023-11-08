@@ -18,6 +18,9 @@ public class LoginController {
     private Button createAccountButton;
 
     @FXML
+    private Button AdministratorButton1;
+
+    @FXML
     private Button forgotButton;
 
     @FXML
@@ -29,18 +32,19 @@ public class LoginController {
     @FXML
     private TextField userField;
 
+    @FXML
+    void signInAdministratorAction(ActionEvent event) throws IOException {
+        main.openAdministratorLoginView();
+    }
 
     @FXML
     void createAccountAction(ActionEvent event) throws IOException {
         main.openSignUpView();
-
-
     }
 
     @FXML
     void forgotAction(ActionEvent event) throws IOException {
         main.openRecoverPassword();
-
     }
 
     /**

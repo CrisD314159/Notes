@@ -135,6 +135,14 @@ public class ModelFactoryController implements Runnable{
 		return trigger;
 	}
 
+	public Admin getAdminByAccount(String user, String password) {
+		return getNotes().getAdminByAccount(user, password);
+	}
+	public boolean verifyAdminAccount(String user, String password) {
+		return getNotes().verifyAccountAdministrator(user, password);
+	}
+
+
 
 	//------------------------------  Singleton ------------------------------------------------
 	// Clase estatica oculta. Tan solo se instanciara el singleton una vez

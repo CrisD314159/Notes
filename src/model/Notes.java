@@ -5,6 +5,7 @@ import lists.ListaSimple;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -12,6 +13,8 @@ public class Notes implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     ArrayList<User> usersList = new ArrayList<User>();
+
+    ArrayList<Admin> adminList = new ArrayList<Admin>();
     ListaSimple<Process> processList = new ListaSimple<Process>();
 
     public Notes() {
@@ -20,6 +23,8 @@ public class Notes implements Serializable {
 
     private void inicializarData() {
         Account a = new Account("pedro", "123");
+        Account adm = new Account("juan", "345");
+        Admin ad = new Admin("juan", "45" , adm);
         User p = new User("pedro", "12", a);
         Process p1 = new Process("01", "desayuno");
         Activity a1 = new Activity("cafe","Preguntar por el cafe",false, false);
@@ -31,6 +36,7 @@ public class Notes implements Serializable {
         p.getProcessList().addToEnd(p1);
 
         getUsersList().add(p);
+        getAdminList().add(ad);
     }
 
     public ArrayList<User> getUsersList() {
@@ -47,6 +53,14 @@ public class Notes implements Serializable {
 
     public void setProcessList(ListaSimple<Process> processList) {
         this.processList = processList;
+    }
+
+    public ArrayList<Admin> getAdminList() {
+        return adminList;
+    }
+
+    public void setAdminList(ArrayList<Admin> adminList) {
+        this.adminList = adminList;
     }
 
     @Override
@@ -264,7 +278,41 @@ public class Notes implements Serializable {
             selectedActivity.setMustDo(mustDo);
             return true;
         }
-
     return false;
     }
+
+    //---------------------------------------Administrator CRUD ---------------------------------------------------------
+
+    public boolean verifyAccountAdministrator(String user, String password) {
+        for (Admin adminAux:adminList) {
+            Account auxAccount = adminAux.getAccount();
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifyAdmin(String id, String user) {
+        System.out.println(adminList.toString());
+        for (Admin AdminAux: adminList) {
+            Account auxAccount = AdminAux.getAccount();
+            if (AdminAux.getId().equals(id) && auxAccount.getUser().equals(user)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Admin getAdminByAccount(String user, String password) {
+        Admin signedAdmin = new Admin();
+        for (Admin adminAux:adminList) {
+            Account auxAccount = adminAux.getAccount();
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+                signedAdmin = adminAux;
+            }
+        }
+        return signedAdmin;
+    }
+
 }
