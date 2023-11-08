@@ -9,19 +9,20 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="502.0" prefWidth="736.0" style="-fx-background-color: #a5c9c3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ActivitiesController">
+<AnchorPane prefHeight="502.0" prefWidth="736.0" style="-fx-background-color: #a5c9c3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ActivitiesController">
    <children>
       <TableView fx:id="activityTable" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="445.0" style="-fx-background-color: #44b178;">
         <columns>
           <TableColumn fx:id="nombreActividadColum" prefWidth="137.0" style="-fx-background-color: #44b178;" text="Nombre" />
-          <TableColumn fx:id="descriptionActivityColumn" prefWidth="231.0" style="-fx-background-color: #44b178;" text="Descripcion" />
+          <TableColumn fx:id="descriptionActivityColumn" prefWidth="231.0" style="-fx-background-color: #44b178;" text="Descripción" />
             <TableColumn fx:id="mustActivityColum" prefWidth="75.0" style="-fx-background-color: #44b178;" text="Obligatoria" />
         </columns>
       </TableView>
-      <TableView fx:id="taskTable" layoutX="14.0" layoutY="288.0" prefHeight="200.0" prefWidth="445.0" style="-fx-background-color: #fbc474;">
+      <TableView fx:id="taskTable" layoutX="14.0" layoutY="288.0" prefHeight="200.0" prefWidth="462.0" style="-fx-background-color: #fbc474;">
         <columns>
-          <TableColumn fx:id="descriptionTaskColumn" prefWidth="303.0" style="-fx-background-color: #fbc474;" text="Descripcion" />
-          <TableColumn fx:id="mustTaskColumn" minWidth="0.0" prefWidth="141.0" style="-fx-background-color: #fbc474;" text="Obligatoria" />
+          <TableColumn fx:id="descriptionTaskColumn" prefWidth="329.13937282562256" style="-fx-background-color: #fbc474;" text="Descripción" />
+          <TableColumn fx:id="mustTaskColumn" minWidth="0.0" prefWidth="71.56161499023438" style="-fx-background-color: #fbc474;" text="Obligatoria" />
+            <TableColumn fx:id="durationColumn" prefWidth="58.834381103515625" style="-fx-background-color: #fbc474;" text="Duración" />
         </columns>
       </TableView>
       <Line endX="633.0" layoutX="115.0" layoutY="279.0" startX="-115.0" />
