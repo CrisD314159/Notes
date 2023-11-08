@@ -5,44 +5,48 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="424.0" prefWidth="399.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditActivityController">
+<AnchorPane prefHeight="424.0" prefWidth="399.0" style="-fx-background-color: #a5c9c3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditActivityController">
    <children>
-      <Label layoutX="21.0" layoutY="14.0" text="Editar Actividad">
+      <Label layoutX="69.0" layoutY="80.0" text="Nuevo Nombre">
          <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <Button fx:id="backButton" layoutX="314.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBack" text="Atrás">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Label layoutX="69.0" layoutY="91.0" text="Nuevo Nombre">
-         <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="nameField" layoutX="69.0" layoutY="108.0" prefHeight="26.0" prefWidth="261.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
       <TextField fx:id="descriptionField" layoutX="69.0" layoutY="207.0" prefHeight="26.0" prefWidth="261.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
-      <Label layoutX="69.0" layoutY="188.0" text="Nueva descripción">
+      <Label layoutX="69.0" layoutY="177.0" text="Nueva descripción">
          <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </Label>
-      <CheckBox fx:id="mustCheck" layoutX="77.0" layoutY="276.0" mnemonicParsing="false" text="Es obligatoria">
+      <CheckBox fx:id="mustCheck" layoutX="77.0" layoutY="276.0" mnemonicParsing="false" style="-fx-background-color: rgb(182,234,255);" text="Es obligatoria">
          <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </CheckBox>
-      <Button fx:id="updateButton" layoutX="157.0" layoutY="345.0" mnemonicParsing="false" onAction="#updateActivity" text="Actualizar">
+      <Button fx:id="updateButton" layoutX="157.0" layoutY="345.0" mnemonicParsing="false" onAction="#updateActivity" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Actualizar">
          <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </Button>
       <Line endX="298.0" layoutX="101.0" layoutY="51.0" startX="-100.0" style="-fx-opacity: .3;" />
+      <Pane layoutX="-2.0" prefHeight="51.0" prefWidth="406.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label layoutX="28.0" layoutY="14.0" text="Editar Actividad" textFill="WHITE">
+               <font>
+                  <Font name="Cambria Bold" size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="329.0" layoutY="10.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: rgb(182,234,255); -fx-cursor: pointer;" text="Atrás">
+               <font>
+                  <Font name="Georgia" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

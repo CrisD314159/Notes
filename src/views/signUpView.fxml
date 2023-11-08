@@ -5,47 +5,66 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="536.0" prefWidth="432.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpView">
+<AnchorPane prefHeight="536.0" prefWidth="432.0" style="-fx-background-color: #a5c9c3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpView">
    <children>
-      <Label layoutX="171.0" layoutY="68.0" text="Sign Up">
+      <TextField fx:id="nameField" layoutX="88.0" layoutY="158.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
+      <TextField fx:id="idField" layoutX="88.0" layoutY="220.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
+      <TextField fx:id="userField" layoutX="88.0" layoutY="336.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
+      <PasswordField fx:id="passwordField" layoutX="88.0" layoutY="405.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
+      <Label layoutX="87.0" layoutY="129.0" text="Nombre">
          <font>
-            <Font size="27.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="nameField" layoutX="96.0" layoutY="158.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
-      <TextField fx:id="idField" layoutX="96.0" layoutY="218.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
-      <TextField fx:id="userField" layoutX="96.0" layoutY="310.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
-      <PasswordField fx:id="passwordField" layoutX="96.0" layoutY="377.0" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black;" />
-      <Label layoutX="96.0" layoutY="135.0" text="Nombre">
+      <Label layoutX="90.0" layoutY="194.0" text="Cédula">
          <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="96.0" layoutY="201.0" text="Cédula">
+      <Label layoutX="88.0" layoutY="306.0" text="Usuario">
          <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="96.0" layoutY="293.0" text="Usuario">
+      <Label layoutX="88.0" layoutY="374.0" text="Clave">
          <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="96.0" layoutY="360.0" text="Clave">
+      <Button fx:id="signUpButton" layoutX="172.0" layoutY="462.0" mnemonicParsing="false" onAction="#signUpAction" style="-fx-background-color: rgb(182,234,255);" text="Registrarse">
          <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="signUpButton" layoutX="171.0" layoutY="456.0" mnemonicParsing="false" onAction="#signUpAction" style="-fx-background-color: rgb(182,234,255);" text="Registrarse">
-         <font>
-            <Font size="15.0" />
+            <Font name="Georgia" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: rgb(182,234,255);" text="Volver" />
       <Line endX="246.5" layoutX="186.0" layoutY="269.0" startX="-186.0" style="-fx-opacity: .2;" />
+      <Line endX="332.5" layoutX="101.0" layoutY="65.0" startX="-100.0" />
+      <Pane layoutX="-6.0" layoutY="-1.0" prefHeight="65.0" prefWidth="441.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label layoutX="172.0" layoutY="15.0" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="28.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: rgb(182,234,255);" text="Volver">
+               <font>
+                  <Font name="Georgia" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Label layoutX="172.0" layoutY="86.0" text="User Data">
+         <font>
+            <Font name="Georgia" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="163.0" layoutY="276.0" text="Account data">
+         <font>
+            <Font name="Georgia" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

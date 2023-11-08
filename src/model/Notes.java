@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.UsuarioException;
+import lists.Cola;
 import lists.ListaSimple;
 
 import java.io.Serial;
@@ -266,5 +267,61 @@ public class Notes implements Serializable {
         }
 
     return false;
+    }
+
+    public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
+        Task task = new Task(description, mustDo, time, false);
+
+        if (activity!= null){
+            if(!verifyTask(activity, description)){
+                activity.getTasksList().encolar(task);
+                return true;
+
+            }
+        }
+        return false;
+    }
+
+    private boolean verifyTask(Activity activity, String description) {
+        Cola<Task> tasks = activity.getTasksList();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.getNodeValue(i).getDescription().equals(description)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Activity getActivityByName(Process process, String name) {
+        for (Activity aux: process.getActivitiesList()) {
+            if (aux.getName().equals(name)){
+                return aux;
+            }
+
+        }
+        return null;
+    }
+
+    public boolean updateTask(Task task, String description, String time, boolean mustDo) {
+        if (task!=null){
+            task.setDescription(description);
+            task.setMustDo(mustDo);
+            task.setDuration(time);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isNextTask(Activity activity, Task selectedTask) {
+        Cola<Task> tasksList = activity.getTasksList();
+        return tasksList.getPrimero().getNodeValue().equals(selectedTask);
+    }
+
+    public boolean markTaskAsDone(Activity selectedActivity, Task selectedTask) {
+        if (selectedActivity!=null){
+            if (isNextTask(selectedActivity, selectedTask)) selectedActivity.getTasksList().desencolar();
+            return true;
+        }
+        return false;
     }
 }
