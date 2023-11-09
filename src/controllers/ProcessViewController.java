@@ -52,6 +52,10 @@ public class ProcessViewController {
     @FXML
     private TableView<Process> processTable;
 
+
+    /**
+     * initializes the process table
+     */
     @FXML
     void initialize(){
         this.processNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -80,6 +84,10 @@ public class ProcessViewController {
         return listaProcesosData;
     }
 
+    /**
+     * Calls the singleton to create a new process
+     * @param event
+     */
     @FXML
     void createProcess(ActionEvent event) {
         String id = "";
@@ -121,6 +129,13 @@ public class ProcessViewController {
 
     }
 
+
+    /**
+     * verifies the empty fields
+     * @param id
+     * @param name
+     * @return
+     */
     private boolean verifyFields(String id, String name) {
         if (name.equals(""))return true;
         if (id.equals(""))return true;
@@ -128,6 +143,10 @@ public class ProcessViewController {
 
     }
 
+    /**
+     * Calls the singleton to delete a process
+     * @param event
+     */
     @FXML
     void deleteProcess(ActionEvent event) {
         if(selectedProcess.getSize() == 0){
@@ -154,12 +173,22 @@ public class ProcessViewController {
 
     }
 
+    /**
+     * returns to the previous view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goBack(ActionEvent event) throws IOException {
         main.inicializarLogin();
 
     }
 
+    /**
+     * Opens a selected process
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void openProcess(ActionEvent event) throws IOException {
         if(selectedProcess != null){

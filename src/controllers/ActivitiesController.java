@@ -51,6 +51,9 @@ public class ActivitiesController {
     private TableColumn<Task, String> descriptionTaskColumn;
 
     @FXML
+    private TableColumn<Task, String> durationColumn;
+
+    @FXML
     private Button editActivityButton;
 
     @FXML
@@ -71,12 +74,23 @@ public class ActivitiesController {
     @FXML
     private TableView<Task> taskTable;
 
+    /**
+     * Returns to the previous view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goBack(ActionEvent event) throws IOException {
         main.openProcessView(signedUser);
 
     }
 
+
+    /**
+     * This method opens the create activity view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void createActivity(ActionEvent event) throws IOException {
         if (selectedProcess != null) {
@@ -85,11 +99,21 @@ public class ActivitiesController {
 
     }
 
+    /**
+     * This method opens the create task view
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void createTaks(ActionEvent event) {
+    void createTaks(ActionEvent event) throws IOException {
+        main.openCreateTask(signedUser, selectedProcess, selectedActivity);
 
     }
 
+    /**
+     * Calls the singleton class for delete a user
+     * @param event
+     */
     @FXML
     void deleteActivity(ActionEvent event) {
         if(selectedActivity.getTasksList().size() == 0){
@@ -99,12 +123,17 @@ public class ActivitiesController {
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Atención");
-            alert.setContentText("para marcar como completada la actividad no debe tener ninguna tarea");
+            alert.setContentText("Para marcar como completada la actividad no debe tener ninguna tarea");
             alert.showAndWait();
         }
 
     }
 
+    /**
+     * Opens edit activity view
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void editActivity(ActionEvent event) throws IOException {
         if (selectedActivity!= null){
@@ -114,12 +143,27 @@ public class ActivitiesController {
     }
 
     @FXML
-    void editTask(ActionEvent event) {
+    void editTask(ActionEvent event) throws IOException {
+        if (selectedTask !=null){
+            main.openEditTask(selectedTask, selectedProcess, signedUser);
+
+        }
+
 
     }
 
     @FXML
     void markAsDone(ActionEvent event) {
+        if (singleton.isNextTask(selectedActivity, selectedTask)){
+            boolean task = singleton.markTaskAsDone(selectedActivity, selectedTask);
+            if (task) listaTareas.remove(selectedTask);
+            taskTable.refresh();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("Para marcar como completada una tarea debe estar completada la que la precede");
+            alert.showAndWait();
+        }
 
     }
 
@@ -131,6 +175,7 @@ public class ActivitiesController {
 
         this.descriptionTaskColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         this.mustTaskColumn.setCellValueFactory(new PropertyValueFactory<>("mustDo"));
+        this.durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
 
         activityTable.getSelectionModel().selectedItemProperty().addListener((obs,oldSelection, newSelection) -> {

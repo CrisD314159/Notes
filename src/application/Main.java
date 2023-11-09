@@ -5,10 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Activity;
-import model.Notes;
+import model.*;
 import model.Process;
-import model.User;
 
 import java.io.IOException;
 
@@ -24,6 +22,7 @@ public class Main extends Application {
         inicializarLogin();
 
     }
+
 
     public void inicializarLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/LoginView.fxml"));
@@ -139,6 +138,47 @@ public class Main extends Application {
         controller.setSelectedProcess(selectedProcess);
         controller.setSignedUser(signedUser);
         controller.setSelectedActivity(selectedActivity);
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void openCreateTask(User signedUser, Process selectedProcess, Activity selectedActivity) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateTaskView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        CreateTaskController controller = fxmlLoader.getController();
+        controller.setSelectedProcess(selectedProcess);
+        controller.setSignedUser(signedUser);
+        controller.setSelectedActivity(selectedActivity);
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+
+
+
+    }
+
+    public void openEditTask(Task selectedTask, Process selectedProcess, User signedUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/EditTaskView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        EditTaskController controller = fxmlLoader.getController();
+        controller.setSelectedProcess(selectedProcess);
+        controller.setSignedUser(signedUser);
+        controller.setSelectedTask(selectedTask);
         controller.setMain(this);
         //scene.getStylesheets().clear();
         // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());

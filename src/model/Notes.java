@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.UsuarioException;
+import lists.Cola;
 import lists.ListaSimple;
 
 import java.io.Serial;
@@ -77,6 +78,12 @@ public class Notes implements Serializable {
         return null;
     }
 
+    /**
+     * This method verifies if an account already exists
+     * @param user
+     * @param password
+     * @return
+     */
     public boolean verifyAccount(String user, String password) {
         for (User userAux:usersList) {
             Account auxAccount = userAux.getAccount();
@@ -87,6 +94,13 @@ public class Notes implements Serializable {
         return false;
     }
 
+
+    /**
+     *this method return a user by its account
+     * @param user
+     * @param password
+     * @return
+     */
     public User getUserByAccount(String user, String password) {
         User signedUser = new User();
         for (User userAux:usersList) {
@@ -98,6 +112,13 @@ public class Notes implements Serializable {
         return signedUser;
     }
 
+
+    /**
+     * This method verifies if a user already exists
+     * @param id
+     * @param user
+     * @return
+     */
     public boolean verifyUser(String id, String user) {
         System.out.println(usersList.toString());
         for (User userAux: usersList) {
@@ -110,6 +131,14 @@ public class Notes implements Serializable {
         return false;
     }
 
+    /**
+     * This method creates a user
+     * @param name
+     * @param id
+     * @param user
+     * @param password
+     * @return
+     */
     public boolean createUser(String name, String id, String user, String password) {
         User newUser = new User();
         Account account = new Account(user, password);
@@ -128,6 +157,13 @@ public class Notes implements Serializable {
         }
     }
 
+
+    /**
+     * This method deletes a process from the user account
+     * @param signedUser
+     * @param selectedProcess
+     * @return
+     */
     public boolean deleteUserProcess(User signedUser, Process selectedProcess) {
         boolean trigger = false;
         if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
@@ -136,6 +172,13 @@ public class Notes implements Serializable {
         return trigger;
     }
 
+
+    /**
+     * this method verifies if a process already exists
+     * @param signedUser
+     * @param id
+     * @return
+     */
     public boolean verifyprocess(User signedUser, String id) {
         if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
             return signedUser.verifyProcess(id);
@@ -143,6 +186,14 @@ public class Notes implements Serializable {
         return false;
     }
 
+
+    /**
+     * This method creates a process
+     * @param signedUser
+     * @param id
+     * @param name
+     * @return
+     */
     public Process createprocess(User signedUser, String id, String name) {
         Process process = new Process(id, name);
         if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
@@ -152,6 +203,14 @@ public class Notes implements Serializable {
         return null;
     }
 
+    /**
+     * This method creates an activity and then asing the activity to a process
+     * @param process
+     * @param name
+     * @param description
+     * @param mustDo
+     * @return
+     */
     public boolean createActivity(Process process, String name, String description, boolean mustDo) {
         Activity activity = new Activity(name, description, mustDo, false);
         if (process!= null){
@@ -165,6 +224,13 @@ public class Notes implements Serializable {
         return false;
     }
 
+
+    /**
+     * This method verifies if an activity already exists
+     * @param process
+     * @param name
+     * @return
+     */
     private boolean verifyActivity(Process process, String name) {
         for (Activity activity: process.getActivitiesList()) {
             if (activity.getName().equals(name)) return true;
@@ -172,6 +238,12 @@ public class Notes implements Serializable {
         return false;
     }
 
+    /**
+     * This method deletes an activity
+     * @param selectedProcess
+     * @param selectedActivity
+     * @return
+     */
     public boolean deleteActivity(Process selectedProcess, Activity selectedActivity) {
         if (selectedProcess != null){
             if (verifyActivity(selectedProcess, selectedActivity.getName())) {
@@ -195,5 +267,61 @@ public class Notes implements Serializable {
         }
 
     return false;
+    }
+
+    public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
+        Task task = new Task(description, mustDo, time, false);
+
+        if (activity!= null){
+            if(!verifyTask(activity, description)){
+                activity.getTasksList().encolar(task);
+                return true;
+
+            }
+        }
+        return false;
+    }
+
+    private boolean verifyTask(Activity activity, String description) {
+        Cola<Task> tasks = activity.getTasksList();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.getNodeValue(i).getDescription().equals(description)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Activity getActivityByName(Process process, String name) {
+        for (Activity aux: process.getActivitiesList()) {
+            if (aux.getName().equals(name)){
+                return aux;
+            }
+
+        }
+        return null;
+    }
+
+    public boolean updateTask(Task task, String description, String time, boolean mustDo) {
+        if (task!=null){
+            task.setDescription(description);
+            task.setMustDo(mustDo);
+            task.setDuration(time);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isNextTask(Activity activity, Task selectedTask) {
+        Cola<Task> tasksList = activity.getTasksList();
+        return tasksList.getPrimero().getNodeValue().equals(selectedTask);
+    }
+
+    public boolean markTaskAsDone(Activity selectedActivity, Task selectedTask) {
+        if (selectedActivity!=null){
+            if (isNextTask(selectedActivity, selectedTask)) selectedActivity.getTasksList().desencolar();
+            return true;
+        }
+        return false;
     }
 }
