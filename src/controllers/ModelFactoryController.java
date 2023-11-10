@@ -135,11 +135,57 @@ public class ModelFactoryController implements Runnable{
 		return trigger;
 	}
 
+
 	public Admin getAdminByAccount(String user, String password) {
-		return getNotes().getAdminByAccount(user, password);
+    return getNotes().getAdminByAccount(user, password);
 	}
 	public boolean verifyAdminAccount(String user, String password) {
 		return getNotes().verifyAccountAdministrator(user, password);
+	}
+
+
+	public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().createTask(activity, description,time, mustDo);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public Activity searchActivityByName(Process process, String name) {
+		return getNotes().getActivityByName(process,name);
+	}
+
+	public boolean updateTask(Task task, String description, String time, boolean mustDo) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().updateTask(task,description,time, mustDo);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public boolean isNextTask(Activity activity, Task selectedTask) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().isNextTask(activity, selectedTask);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public boolean markTaskAsDone(Activity selectedActivity, Task selectedTask) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().markTaskAsDone(selectedActivity, selectedTask);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
 	}
 
 
