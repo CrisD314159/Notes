@@ -135,6 +135,15 @@ public class ModelFactoryController implements Runnable{
 		return trigger;
 	}
 
+
+	public Admin getAdminByAccount(String user, String password) {
+    return getNotes().getAdminByAccount(user, password);
+	}
+	public boolean verifyAdminAccount(String user, String password) {
+		return getNotes().verifyAccountAdministrator(user, password);
+	}
+
+
 	public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
 		boolean trigger = false;
 		try {
@@ -178,6 +187,7 @@ public class ModelFactoryController implements Runnable{
 		}
 		return trigger;
 	}
+
 
 
 	//------------------------------  Singleton ------------------------------------------------

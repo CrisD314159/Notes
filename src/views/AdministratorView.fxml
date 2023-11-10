@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="582.0" prefWidth="556.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorViewController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="83.0" prefWidth="533.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label fx:id="lblAdministrator" layoutX="175.0" layoutY="25.0" prefHeight="27.0" prefWidth="92.0">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerY="1.0" proportional="false" radius="0.5">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label layoutX="43.0" layoutY="28.0" text="Welcome Back">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

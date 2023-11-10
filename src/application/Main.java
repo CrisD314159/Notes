@@ -165,9 +165,37 @@ public class Main extends Application {
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.show();
+    }
 
+    public void openAdministratorLoginView() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/AdministratorLoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
 
+        AdministratorLoginViewController controller = fxmlLoader.getController();
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
 
+    public void openAdministratorView(Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/AdministratorView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        AdministratorViewController controller = fxmlLoader.getController();
+        controller.setLoggedAdmin(signedAdmin);
+        controller.setMain(this);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
     }
 
     public void openEditTask(Task selectedTask, Process selectedProcess, User signedUser) throws IOException {

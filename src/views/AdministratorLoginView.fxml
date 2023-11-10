@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="568.0" prefWidth="452.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorLoginViewController">
+   <children>
+      <Pane prefHeight="91.0" prefWidth="452.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label layoutX="97.0" layoutY="28.0" text="Sign In Administrator">
+               <font>
+                  <Font name="Cambria" size="28.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#fcfcfc" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+         </children>
+      </Pane>
+      <PasswordField fx:id="passwordAdminsitratorField" layoutX="114.0" layoutY="332.0" style="-fx-background-color: transparent; -fx-border-style: solid;" />
+      <TextField fx:id="administratorUserField" layoutX="114.0" layoutY="213.0" style="-fx-background-color: transparent; -fx-border-style: solid;" />
+      <Label layoutX="114.0" layoutY="180.0" text="Administrator User">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="114.0" layoutY="302.0" text="Password:">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <Separator layoutX="1.0" layoutY="399.0" prefHeight="3.0" prefWidth="452.0" style="-fx-background-color: #4f4e4e;" />
+      <Button fx:id="backButton" layoutX="120.0" layoutY="467.0" mnemonicParsing="false" onAction="#getBackAction" style="-fx-background-color: rgb(182,234,255);" text="Back">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="signInAdministratorButton" layoutX="267.0" layoutY="467.0" mnemonicParsing="false" onAction="#signInAdministratorAction" style="-fx-background-color: rgb(182,234,255);" text="Sign In">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
