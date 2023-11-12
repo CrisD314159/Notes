@@ -3,21 +3,20 @@ package controllers;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import model.Activity;
+import javafx.scene.control.*;
 import model.Process;
 import model.Task;
 import model.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EditTaskController {
 
     Main main;
     ModelFactoryController singleton = ModelFactoryController.getInstance();
+
+    private ArrayList<String> timeList = new ArrayList<String>();
 
     User signedUser;
     Process selectedProcess;
@@ -35,7 +34,8 @@ public class EditTaskController {
     private CheckBox mustCheckBox;
 
     @FXML
-    private TextField tipeField;
+    private ChoiceBox<String> timeChoice;
+
 
     @FXML
     private Button updateTaskButton;
@@ -51,7 +51,7 @@ public class EditTaskController {
         String description = "";
         String time = "";
         description = descriptionField.getText();
-        time = tipeField.getText();
+        time = timeChoice.getValue();
         boolean mustDo = mustCheckBox.isSelected();
         if(!verifyFields(description, time)){
             boolean task = singleton.updateTask(selectedTask, description, time, mustDo);
@@ -88,7 +88,17 @@ public class EditTaskController {
     public void setMain(Main main) {
         this.main = main;
         descriptionField.setText(selectedTask.getDescription());
-        tipeField.setText(selectedTask.getDuration());
+        timeChoice.getItems().clear();
+        timeChoice.getItems().addAll(getTimeList());
         if (selectedTask.isMustDo()) mustCheckBox.fire();
+    }
+
+    private ArrayList<String> getTimeList() {
+        timeList.add("1 minuto");
+        timeList.add("2 minutos");
+        timeList.add("3 minutos");
+        timeList.add("4 minutos");
+        timeList.add("5 minutos");
+        return timeList;
     }
 }
