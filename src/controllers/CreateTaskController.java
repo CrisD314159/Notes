@@ -16,6 +16,9 @@ public class CreateTaskController {
     private Activity selectedActivity;
     private User signedUser;
 
+    private ArrayList<String> timeList = new ArrayList<String>();
+
+
     Main main;
 
     ModelFactoryController singleton = ModelFactoryController.getInstance();
@@ -37,16 +40,15 @@ public class CreateTaskController {
     private CheckBox mustCheckBox;
 
     @FXML
-    private TextField tipeField;
+    private ChoiceBox<String> timeChoiceBox;
 
     @FXML
     void createTask(ActionEvent event) throws IOException {
         String description = "";
         String time = "";
         description = descriptionField.getText();
-        time = tipeField.getText();
+        time = timeChoiceBox.getValue();
         Activity activity = searchActivity(choiceActivity.getValue());
-        System.out.println(activity);
         boolean mustDo = mustCheckBox.isSelected();
         if(!verifyFields(description, time, activity)){
             boolean task = singleton.createTask(activity, description, time, mustDo);
@@ -93,7 +95,18 @@ public class CreateTaskController {
     public void setMain(Main main) {
         choiceActivity.getItems().clear();
         choiceActivity.getItems().addAll(getProcessActivities());
+        timeChoiceBox.getItems().clear();
+        timeChoiceBox.getItems().addAll(getTimeList());
         this.main = main;
+    }
+
+    private ArrayList<String> getTimeList() {
+        timeList.add("1minuto");
+        timeList.add("2minutos");
+        timeList.add("3minutos");
+        timeList.add("4minutos");
+        timeList.add("5minutos");
+        return timeList;
     }
 
     private ArrayList<String> getProcessActivities() {
@@ -101,7 +114,6 @@ public class CreateTaskController {
         ArrayList<String> activitiesString = new ArrayList<String>();
         for (Activity aux: activities) {
             activitiesString.add(aux.getName());
-
         }
         return activitiesString;
     }

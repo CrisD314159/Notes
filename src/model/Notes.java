@@ -4,12 +4,11 @@ import exceptions.UsuarioException;
 import lists.Cola;
 import lists.ListaSimple;
 
+import java.awt.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
-
 public class Notes implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -25,14 +24,14 @@ public class Notes implements Serializable {
     private void inicializarData() {
         Account a = new Account("pedro", "123");
         Account adm = new Account("juan", "345");
-        Admin ad = new Admin("juan", "45" , adm);
+        Admin ad = new Admin("juan", "45", adm);
         User p = new User("pedro", "12", a);
         Process p1 = new Process("01", "desayuno");
-        Activity a1 = new Activity("cafe","Preguntar por el cafe",false, false);
+        Activity a1 = new Activity("cafe", "Preguntar por el cafe", false, false);
         Task t1 = new Task("Prepara el cafe", false, "5 minutos", true);
         a1.getTasksList().encolar(t1);
         p1.getActivitiesList().addToEnd(a1);
-        p1.setSize(p1.getSize()+1);
+        p1.setSize(p1.getSize() + 1);
 
         p.getProcessList().addToEnd(p1);
 
@@ -86,7 +85,6 @@ public class Notes implements Serializable {
     }
 
 
-
     //CRUD AND DATA ADMIN METHODS
     public User buscarVendeor(String id) {
         return null;
@@ -94,14 +92,15 @@ public class Notes implements Serializable {
 
     /**
      * This method verifies if an account already exists
+     *
      * @param user
      * @param password
      * @return
      */
     public boolean verifyAccount(String user, String password) {
-        for (User userAux:usersList) {
+        for (User userAux : usersList) {
             Account auxAccount = userAux.getAccount();
-            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
                 return true;
             }
         }
@@ -110,16 +109,17 @@ public class Notes implements Serializable {
 
 
     /**
-     *this method return a user by its account
+     * this method return a user by its account
+     *
      * @param user
      * @param password
      * @return
      */
     public User getUserByAccount(String user, String password) {
         User signedUser = new User();
-        for (User userAux:usersList) {
+        for (User userAux : usersList) {
             Account auxAccount = userAux.getAccount();
-            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
                 signedUser = userAux;
             }
         }
@@ -129,15 +129,16 @@ public class Notes implements Serializable {
 
     /**
      * This method verifies if a user already exists
+     *
      * @param id
      * @param user
      * @return
      */
     public boolean verifyUser(String id, String user) {
         System.out.println(usersList.toString());
-        for (User userAux: usersList) {
+        for (User userAux : usersList) {
             Account auxAccount = userAux.getAccount();
-            if (userAux.getId().equals(id) && auxAccount.getUser().equals(user)){
+            if (userAux.getId().equals(id) && auxAccount.getUser().equals(user)) {
                 return true;
             }
 
@@ -147,6 +148,7 @@ public class Notes implements Serializable {
 
     /**
      * This method creates a user
+     *
      * @param name
      * @param id
      * @param user
@@ -157,9 +159,9 @@ public class Notes implements Serializable {
         User newUser = new User();
         Account account = new Account(user, password);
         try {
-            if (verifyUser(id, user)){
-                throw  new UsuarioException("El usuario ya existe");
-            }else {
+            if (verifyUser(id, user)) {
+                throw new UsuarioException("El usuario ya existe");
+            } else {
                 newUser.setName(name);
                 newUser.setId(id);
                 newUser.setAccount(account);
@@ -174,13 +176,14 @@ public class Notes implements Serializable {
 
     /**
      * This method deletes a process from the user account
+     *
      * @param signedUser
      * @param selectedProcess
      * @return
      */
     public boolean deleteUserProcess(User signedUser, Process selectedProcess) {
         boolean trigger = false;
-        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
+        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())) {
             trigger = signedUser.deleteProcess(selectedProcess);
         }
         return trigger;
@@ -189,12 +192,13 @@ public class Notes implements Serializable {
 
     /**
      * this method verifies if a process already exists
+     *
      * @param signedUser
      * @param id
      * @return
      */
     public boolean verifyprocess(User signedUser, String id) {
-        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
+        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())) {
             return signedUser.verifyProcess(id);
         }
         return false;
@@ -203,6 +207,7 @@ public class Notes implements Serializable {
 
     /**
      * This method creates a process
+     *
      * @param signedUser
      * @param id
      * @param name
@@ -210,7 +215,7 @@ public class Notes implements Serializable {
      */
     public Process createprocess(User signedUser, String id, String name) {
         Process process = new Process(id, name);
-        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())){
+        if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())) {
             signedUser.getProcessList().addToEnd(process);
             return process;
         }
@@ -219,6 +224,7 @@ public class Notes implements Serializable {
 
     /**
      * This method creates an activity and then asing the activity to a process
+     *
      * @param process
      * @param name
      * @param description
@@ -227,10 +233,10 @@ public class Notes implements Serializable {
      */
     public boolean createActivity(Process process, String name, String description, boolean mustDo) {
         Activity activity = new Activity(name, description, mustDo, false);
-        if (process!= null){
-            if(!verifyActivity(process, name)){
+        if (process != null) {
+            if (!verifyActivity(process, name)) {
                 process.getActivitiesList().addToEnd(activity);
-                process.setSize(process.getSize()+1);
+                process.setSize(process.getSize() + 1);
                 return true;
 
             }
@@ -241,12 +247,13 @@ public class Notes implements Serializable {
 
     /**
      * This method verifies if an activity already exists
+     *
      * @param process
      * @param name
      * @return
      */
     private boolean verifyActivity(Process process, String name) {
-        for (Activity activity: process.getActivitiesList()) {
+        for (Activity activity : process.getActivitiesList()) {
             if (activity.getName().equals(name)) return true;
         }
         return false;
@@ -254,15 +261,16 @@ public class Notes implements Serializable {
 
     /**
      * This method deletes an activity
+     *
      * @param selectedProcess
      * @param selectedActivity
      * @return
      */
     public boolean deleteActivity(Process selectedProcess, Activity selectedActivity) {
-        if (selectedProcess != null){
+        if (selectedProcess != null) {
             if (verifyActivity(selectedProcess, selectedActivity.getName())) {
                 selectedProcess.getActivitiesList().eliminar(selectedActivity);
-                selectedProcess.setSize(selectedProcess.getSize()-1);
+                selectedProcess.setSize(selectedProcess.getSize() - 1);
                 return true;
             }
 
@@ -271,28 +279,32 @@ public class Notes implements Serializable {
     }
 
 
-
     public boolean updateActivity(Activity selectedActivity, String name, String description, boolean mustDo) {
-        if(selectedActivity != null){
+        if (selectedActivity != null) {
             selectedActivity.setName(name);
             selectedActivity.setDescription(description);
             selectedActivity.setMustDo(mustDo);
             return true;
         }
-    return false;
+        return false;
     }
 
-    //---------------------------------------Administrator CRUD ---------------------------------------------------------
-    public boolean verifyAccountAdministrator(String user, String password) {
-       for (Admin adminAux:adminList) {
-            Account auxAccount = adminAux.getAccount();
-            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+    private boolean verifyTask(Activity activity, String description) {
+        Cola<Task> tasks = activity.getTasksList();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.getNodeValue(i).getDescription().equals(description)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
     public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
         Task task = new Task(description, mustDo, time, false);
+        setNotification(time, description);
 
-        if (activity!= null){
-            if(!verifyTask(activity, description)){
+        if (activity != null) {
+            if (!verifyTask(activity, description)) {
                 activity.getTasksList().encolar(task);
                 return true;
 
@@ -301,15 +313,31 @@ public class Notes implements Serializable {
         return false;
     }
 
-    public boolean verifyAdmin(String id, String user) {
-        System.out.println(adminList.toString());
-        for (Admin AdminAux: adminList) {
-            Account auxAccount = AdminAux.getAccount();
-            if (AdminAux.getId().equals(id) && auxAccount.getUser().equals(user)){
-    private boolean verifyTask(Activity activity, String description) {
-        Cola<Task> tasks = activity.getTasksList();
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.getNodeValue(i).getDescription().equals(description)){
+    private void setNotification(String time, String description) {
+        System.out.println(time);
+
+        Notificacion notificacion = new Notificacion(description);
+        if (time.equals("1minuto")) {
+            notificacion.scheduleNotification(60000);
+        } else if (time.equals("2minutos")) {
+            notificacion.scheduleNotification(2 * 60_000);
+        } else if (time.equals("3minutos")) {
+            notificacion.scheduleNotification(3 * 60_000);
+        } else if (time.equals("4minutos")) {
+            notificacion.scheduleNotification(4 * 60_000);
+        } else if (time.equals("5minutos")) {
+            notificacion.scheduleNotification(5 * 60_000);
+        } else {
+            System.out.println("Tiempo no válido");
+        }
+
+    }
+
+    //---------------------------------------Administrator CRUD ---------------------------------------------------------
+    public boolean verifyAccountAdministrator(String user, String password) {
+        for (Admin adminAux : adminList) {
+            Account auxAccount = adminAux.getAccount();
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
                 return true;
             }
         }
@@ -318,9 +346,9 @@ public class Notes implements Serializable {
 
     public Admin getAdminByAccount(String user, String password) {
         Admin signedAdmin = new Admin();
-        for (Admin adminAux:adminList) {
+        for (Admin adminAux : adminList) {
             Account auxAccount = adminAux.getAccount();
-            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
                 signedAdmin = adminAux;
             }
         }
@@ -328,8 +356,8 @@ public class Notes implements Serializable {
     }
 
     public Activity getActivityByName(Process process, String name) {
-        for (Activity aux: process.getActivitiesList()) {
-            if (aux.getName().equals(name)){
+        for (Activity aux : process.getActivitiesList()) {
+            if (aux.getName().equals(name)) {
                 return aux;
             }
 
@@ -338,10 +366,18 @@ public class Notes implements Serializable {
     }
 
     public boolean updateTask(Task task, String description, String time, boolean mustDo) {
-        if (task!=null){
+        if (task != null) {
             task.setDescription(description);
             task.setMustDo(mustDo);
             task.setDuration(time);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean markTaskAsDone(Activity selectedActivity, Task selectedTask) {
+        if (selectedActivity != null) {
+            if (isNextTask(selectedActivity, selectedTask)) selectedActivity.getTasksList().desencolar();
             return true;
         }
         return false;
@@ -352,11 +388,16 @@ public class Notes implements Serializable {
         return tasksList.getPrimero().getNodeValue().equals(selectedTask);
     }
 
-    public boolean markTaskAsDone(Activity selectedActivity, Task selectedTask) {
-        if (selectedActivity!=null){
-            if (isNextTask(selectedActivity, selectedTask)) selectedActivity.getTasksList().desencolar();
-            return true;
+    public boolean verifyAdmin(String id, String user) {
+        System.out.println(adminList.toString());
+        for (Admin AdminAux : adminList) {
+            Account auxAccount = AdminAux.getAccount();
+            if (AdminAux.getId().equals(id) && auxAccount.getUser().equals(user)) {
+                return true;
+            }
+
         }
         return false;
     }
+
 }
