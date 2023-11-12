@@ -110,7 +110,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void openCreateActivity(Process selectedProcess, User signedUser) throws IOException {
+    public void openCreateActivity(Process selectedProcess, User signedUser, int insertion) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateActivityView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
@@ -118,7 +118,9 @@ public class Main extends Application {
         CreateActivityController controller = fxmlLoader.getController();
         controller.setSelectedProcess(selectedProcess);
         controller.setSignedUser(signedUser);
+        controller.setInsertion(insertion);
         controller.setMain(this);
+
         //scene.getStylesheets().clear();
         // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
         //scene.setFill(Color.TRANSPARENT);

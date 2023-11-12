@@ -231,11 +231,14 @@ public class Notes implements Serializable {
      * @param mustDo
      * @return
      */
-    public boolean createActivity(Process process, String name, String description, boolean mustDo) {
+    public boolean createActivity(Process process, String name, String description, boolean mustDo, int insertion) {
         Activity activity = new Activity(name, description, mustDo, false);
         if (process != null) {
             if (!verifyActivity(process, name)) {
-                process.getActivitiesList().addToEnd(activity);
+                switch (insertion) {
+                    case 1 -> process.getActivitiesList().agregarInicio(activity);
+                    case 0 -> process.getActivitiesList().addToEnd(activity);
+                }
                 process.setSize(process.getSize() + 1);
                 return true;
 
