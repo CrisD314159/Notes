@@ -38,6 +38,8 @@ public class Notes implements Serializable {
 
         getUsersList().add(p);
         getAdminList().add(ad);
+
+
     }
 
     public ArrayList<User> getUsersList() {
@@ -284,15 +286,20 @@ public class Notes implements Serializable {
 
     //---------------------------------------Administrator CRUD ---------------------------------------------------------
     public boolean verifyAccountAdministrator(String user, String password) {
-       for (Admin adminAux:adminList) {
+        for (Admin adminAux : adminList) {
             Account auxAccount = adminAux.getAccount();
-            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)){
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
                 return true;
-    public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
+            }
+        }
+        return false;
+    }
+
+    public boolean createTask(Activity activity, String description, String time, boolean mustDo){
         Task task = new Task(description, mustDo, time, false);
 
-        if (activity!= null){
-            if(!verifyTask(activity, description)){
+        if (activity != null) {
+            if (!verifyTask(activity, description)) {
                 activity.getTasksList().encolar(task);
                 return true;
 
@@ -301,15 +308,20 @@ public class Notes implements Serializable {
         return false;
     }
 
+
     public boolean verifyAdmin(String id, String user) {
-        System.out.println(adminList.toString());
-        for (Admin AdminAux: adminList) {
-            Account auxAccount = AdminAux.getAccount();
-            if (AdminAux.getId().equals(id) && auxAccount.getUser().equals(user)){
+        for (Admin adminAux : adminList) {
+            Account auxAccount = adminAux.getAccount();
+            if (adminAux.getId().equals(id) && auxAccount.getUser().equals(user)) {
+               return true;
+            }
+        }
+        return false;
+    }
     private boolean verifyTask(Activity activity, String description) {
         Cola<Task> tasks = activity.getTasksList();
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.getNodeValue(i).getDescription().equals(description)){
+            if (tasks.getNodeValue(i).getDescription().equals(description)) {
                 return true;
             }
         }

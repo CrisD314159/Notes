@@ -216,4 +216,21 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
     }
+
+    public void administratorUserView(User selectedUser, Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/AdministratorUserView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        AdministratorUserViewController controller = fxmlLoader.getController();
+        controller.setMain(this);
+        controller.setSelectedUser(selectedUser);
+        controller.setSelectedAdmin(signedAdmin);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
 }
