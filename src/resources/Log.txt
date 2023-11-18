@@ -254,3 +254,25 @@ Nov 12, 2023 5:45:53 PM persistance.ArchivoUtil guardarRegistroLog
 INFO: InicioApp,Welcome to notes,2023-11-12
 Nov 12, 2023 6:02:01 PM persistance.ArchivoUtil guardarRegistroLog
 INFO: InicioApp,Welcome to notes,2023-11-12
+Nov 12, 2023 10:49:55 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-12
+Nov 18, 2023 9:56:27 AM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 9:57:23 AM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 2:54:03 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 2:57:59 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 4:52:38 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 5:38:32 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 5:43:08 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 5:44:47 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 5:47:15 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18
+Nov 18, 2023 5:57:06 PM persistance.ArchivoUtil guardarRegistroLog
+INFO: InicioApp,Welcome to notes,2023-11-18

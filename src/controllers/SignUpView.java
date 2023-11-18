@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.Permissions;
 
 import java.io.IOException;
 
@@ -61,7 +62,7 @@ public class SignUpView {
         password = passwordField.getText();
         if(!verifyFields(name , id, user, password)){
             if(!singleton.verifyUser(id, user)){
-                if(singleton.createUser(name, id, user, password)){
+                if(singleton.createUser(name, id, user, password, Permissions.VIEW)){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Listo");
                     alert.setContentText("Usuario creado con éxito");

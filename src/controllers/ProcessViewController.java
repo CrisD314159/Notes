@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Permissions;
 import model.Process;
 import model.User;
 
@@ -95,26 +96,33 @@ public class ProcessViewController {
         id = idField.getText();
         name = nameField.getText();
         if(!verifyFields(id, name)){
-            if (!singleton.verifyProcess(signedUser, id)){
-                Process process = singleton.createProcess(signedUser, id, name);
-                if (process != null){
-                    processTable.getItems().clear();
-                    listaProcesosData.addAll(singleton.getUserProcessList(signedUser));
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Listo");
-                    alert.setContentText("Proceso creado");
-                    alert.showAndWait();
+            if (signedUser.getPermission() == Permissions.EDIT){
+                if (!singleton.verifyProcess(signedUser, id)){
+                    Process process = singleton.createProcess(signedUser, id, name);
+                    if (process != null){
+                        processTable.getItems().clear();
+                        listaProcesosData.addAll(singleton.getUserProcessList(signedUser));
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Listo");
+                        alert.setContentText("Proceso creado");
+                        alert.showAndWait();
+                    }else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setContentText("Ocurrio un error a la hora de crear el proceso");
+                        alert.showAndWait();
+                    }
+
                 }else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setContentText("Ocurrio un error a la hora de crear el proceso");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atención");
+                    alert.setContentText("El proceso ya existe");
                     alert.showAndWait();
                 }
-
             }else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Atención");
-                alert.setContentText("El proceso ya existe");
+                alert.setContentText("No cuenta con los permisos para hacer esto");
                 alert.showAndWait();
             }
             processTable.refresh();
@@ -149,26 +157,34 @@ public class ProcessViewController {
      */
     @FXML
     void deleteProcess(ActionEvent event) {
-        if(selectedProcess.getSize() == 0){
-            if (singleton.deleteUserProcess(signedUser, selectedProcess)){
-                listaProcesosData.remove(selectedProcess);
+        if (signedUser.getPermission() == Permissions.EDIT){
+            if(selectedProcess.getSize() == 0){
+                if (singleton.deleteUserProcess(signedUser, selectedProcess)){
+                    listaProcesosData.remove(selectedProcess);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Listo");
+                    alert.setContentText("Proceso eliminado");
+                    alert.showAndWait();
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("Ocurrio un error a la hora de eliminar el proceso");
+                    alert.showAndWait();
+                }
+                processTable.refresh();
+            }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Listo");
-                alert.setContentText("Proceso eliminado");
-                alert.showAndWait();
-            }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Ocurrio un error a la hora de eliminar el proceso");
+                alert.setTitle("Atención");
+                alert.setContentText("para eliminar un proceso, este no debe tener actividades");
                 alert.showAndWait();
             }
-            processTable.refresh();
-        }else{
+        }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Atención");
-            alert.setContentText("para eliminar un proceso, este no debe tener actividades");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
             alert.showAndWait();
         }
+
 
 
     }

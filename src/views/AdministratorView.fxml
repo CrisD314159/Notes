@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="582.0" prefWidth="556.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorViewController">
+<AnchorPane prefHeight="582.0" prefWidth="709.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorViewController">
    <children>
-      <Pane layoutX="14.0" layoutY="14.0" prefHeight="83.0" prefWidth="533.0" style="-fx-background-color: #4f4e4e;">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="83.0" prefWidth="679.0" style="-fx-background-color: #4f4e4e;">
          <children>
             <Label fx:id="lblAdministrator" layoutX="175.0" layoutY="25.0" prefHeight="27.0" prefWidth="92.0">
                <font>
@@ -38,7 +41,57 @@
                   </RadialGradient>
                </textFill>
             </Label>
+            <Button fx:id="gobackButton" layoutX="576.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" text="Atrás">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
+      <TableView fx:id="userTable" layoutX="14.0" layoutY="129.0" prefHeight="289.0" prefWidth="267.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="92.0" text="Nombre" />
+          <TableColumn fx:id="processNumberColumn" prefWidth="75.0" text="N. Procesos" />
+            <TableColumn fx:id="permissionColumn" prefWidth="98.0" text="Permiso" />
+        </columns>
+      </TableView>
+      <TableView fx:id="processTable" layoutX="363.0" layoutY="129.0" prefHeight="289.0" prefWidth="338.0">
+         <columns>
+            <TableColumn fx:id="processNameColumn" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="processIdColumn" prefWidth="138.0" text="Id" />
+            <TableColumn fx:id="activitiesNumberColumn" prefWidth="122.0" text="N. Actividades" />
+         </columns>
+      </TableView>
+      <Button fx:id="editUserButton" layoutX="30.0" layoutY="435.0" mnemonicParsing="false" onAction="#editUser" text="Editar usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="createUserButton" layoutX="31.0" layoutY="472.0" mnemonicParsing="false" onAction="#createUser" text="Crear usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteUserButton" layoutX="24.0" layoutY="513.0" mnemonicParsing="false" onAction="#deleteUser" text="Eliminar usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="createProcessButton" layoutX="162.0" layoutY="435.0" mnemonicParsing="false" onAction="#createProcess" text="Crear proceso">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="editProcessButton" layoutX="561.0" layoutY="435.0" mnemonicParsing="false" onAction="#editProcess" text="Editar proceso">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteProcessButton" layoutX="389.0" layoutY="435.0" mnemonicParsing="false" onAction="#deleteProcess" text="Eliminar proceso">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Line endX="-100.0" endY="465.0" layoutX="417.0" layoutY="117.0" startX="-100.0" startY="-20.0" />
    </children>
 </AnchorPane>
