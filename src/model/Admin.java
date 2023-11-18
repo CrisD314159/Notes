@@ -1,5 +1,7 @@
 package model;
 
+import lists.ListaSimple;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,6 +12,8 @@ public class Admin implements Serializable {
     private String name;
     private String id;
     private Account account;
+
+    private ListaSimple<User> usersList = new ListaSimple<>();
 
     public Admin(String name, String id, Account account) {
         this.name = name;
@@ -45,6 +49,14 @@ public class Admin implements Serializable {
         this.account = account;
     }
 
+    public ListaSimple<User> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(ListaSimple<User> usersList) {
+        this.usersList = usersList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,7 +67,7 @@ public class Admin implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id, account);
+        return Objects.hash(name, id, account, usersList);
     }
 
     @Override

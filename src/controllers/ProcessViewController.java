@@ -1,5 +1,6 @@
 package controllers;
 
+import Excel.ExcelUtil;
 import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,10 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+<<<<<<< HEAD
 import model.Permissions;
+=======
+import javafx.stage.FileChooser;
+>>>>>>> 2f1e6718c0e09ca2127ecea4c9e023c155ef4c6d
 import model.Process;
 import model.User;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ProcessViewController {
@@ -31,6 +37,12 @@ public class ProcessViewController {
 
     @FXML
     private Button createButton;
+
+    @FXML
+    private Button ExportExcel;
+
+    @FXML
+    private Button ExcelImport;
 
     @FXML
     private Button deleteButton;
@@ -217,6 +229,36 @@ public class ProcessViewController {
         }
 
     }
+
+    @FXML
+    void ExcelImportAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ExportExcelAction(ActionEvent event) {
+        exportToExcel();
+    }
+
+    private void exportToExcel() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Excel", "*.xlsx"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+
+        if (selectedFile != null) {
+            ObservableList<Process> data = processTable.getItems();
+            String[][] dataToExport = new String[data.size() + 1][3]; // +1 for header row
+            dataToExport[0] = new String[]{"Nombre Del Proceso", "Numero De Actividades"};
+
+            for (int i = 0; i < data.size(); i++) {
+                Process process = data.get(i);
+                dataToExport[i + 1] = new String[]{process.getName(), process.getId()};
+            }
+
+            ExcelUtil.exportToExcel(dataToExport, selectedFile.getAbsolutePath());
+        }
+    }
+
 
 
 }

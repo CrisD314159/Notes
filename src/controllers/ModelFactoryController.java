@@ -143,6 +143,18 @@ public class ModelFactoryController implements Runnable{
 		return getNotes().verifyAccountAdministrator(user, password);
 	}
 
+	public ArrayList<User> getUsersList() {
+		return notes.getUsersList();
+	}
+	public ArrayList<User> getUserAdminList(Admin signedAdmin) {
+		ArrayList<User> processes = new ArrayList<User>();
+		ListaSimple<User> lista = signedAdmin.getUsersList();
+		for (int i = 0; i <lista.getSize() ; i++) {
+			processes.add(lista.getNodeValue(i));
+		}
+		return processes;
+	}
+
 
 	public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
 		boolean trigger = false;

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="628.0" prefWidth="820.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorUserViewController">
+   <children>
+      <Pane layoutX="44.0" layoutY="14.0" prefHeight="93.0" prefWidth="741.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label layoutX="40.0" layoutY="33.0" prefHeight="28.0" prefWidth="276.0" text="Users Of The Application" textFill="WHITE">
+               <font>
+                  <Font name="Georgia" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tblActivityUser" layoutX="44.0" layoutY="141.0" prefHeight="163.0" prefWidth="576.0">
+        <columns>
+          <TableColumn fx:id="columnNameActivity" prefWidth="203.0" text="Nombre Actividades" />
+          <TableColumn fx:id="columnDescriptionActivity" prefWidth="185.0" text="Descripción " />
+            <TableColumn fx:id="columnObligatoriaActivities" prefWidth="164.0" text="Obligatoria" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button layoutX="663.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: rgb(182,234,255);" text="Importar Excel">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="ExportarExcelAdmin" layoutX="663.0" layoutY="350.0" mnemonicParsing="false" onAction="#ExportExcelAdmin" style="-fx-background-color: rgb(182,234,255);" text="Exportar Excel">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tblTaskUser" layoutX="44.0" layoutY="366.0" prefHeight="200.0" prefWidth="576.0">
+        <columns>
+          <TableColumn fx:id="columnDescripcionTask" prefWidth="148.0" text="Descripción" />
+          <TableColumn fx:id="columnObligatoriaTask" prefWidth="158.0" text="Obligatoria" />
+            <TableColumn fx:id="columnDuracionTask" prefWidth="75.0" text="Duración" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>
