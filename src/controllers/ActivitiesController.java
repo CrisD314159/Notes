@@ -203,8 +203,6 @@ public class ActivitiesController {
         activityTable.getItems().clear();
         activityTable.setItems(getActivitiesList());
         taskTable.getItems().clear();
-
-
     }
 
     private ObservableList<Activity> getActivitiesList() {
