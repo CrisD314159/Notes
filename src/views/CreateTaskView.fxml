@@ -22,7 +22,6 @@
             <Font size="15.0" />
          </font></Button>
       <TextField fx:id="descriptionField" layoutX="39.0" layoutY="118.0" prefHeight="26.0" prefWidth="322.0" />
-      <TextField fx:id="tipeField" layoutX="39.0" layoutY="220.0" prefHeight="26.0" prefWidth="322.0" />
       <Label layoutX="39.0" layoutY="99.0" text="Descripción">
          <font>
             <Font size="15.0" />
@@ -49,5 +48,6 @@
          </font>
       </Label>
       <ChoiceBox fx:id="choiceActivity" layoutX="40.0" layoutY="293.0" prefHeight="26.0" prefWidth="322.0" />
+      <ChoiceBox fx:id="timeChoiceBox" layoutX="40.0" layoutY="217.0" prefHeight="26.0" prefWidth="322.0" />
    </children>
 </AnchorPane>

@@ -103,10 +103,10 @@ public class ModelFactoryController implements Runnable{
 		return tasks;
 	}
 
-	public boolean createActivity(Process process, String name, String description, boolean mustDo) {
+	public boolean createActivity(Process process, String name, String description, boolean mustDo, int insertion) {
 		boolean trigger = false;
 		try {
-			trigger = getNotes().createActivity(process, name, description, mustDo);
+			trigger = getNotes().createActivity(process, name, description, mustDo, insertion);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

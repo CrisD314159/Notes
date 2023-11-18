@@ -7,14 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import model.Activity;
 import model.Process;
 import model.Task;
 import model.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ActivitiesController {
     private Process selectedProcess;
@@ -34,7 +32,11 @@ public class ActivitiesController {
     private TableView<Activity> activityTable;
 
     @FXML
-    private Button createActivityButton;
+    private Button createBeginingActivityButton;
+
+    @FXML
+    private Button createEndActivityButton;
+
 
     @FXML
     private Button createTaskButton;
@@ -87,17 +89,30 @@ public class ActivitiesController {
 
 
     /**
-     * This method opens the create activity view
+     * This method opens the create activity view to create a activity at the beginning
      * @param event
      * @throws IOException
      */
     @FXML
-    void createActivity(ActionEvent event) throws IOException {
+    void createActivityBegining(ActionEvent event) throws IOException {
         if (selectedProcess != null) {
-            main.openCreateActivity(selectedProcess, signedUser);
+            main.openCreateActivity(selectedProcess, signedUser, 1);
         }
 
     }
+
+    /**
+     * This method opens the create activity view to create a activity at the end
+     * @param event
+     */
+    @FXML
+    void createActivityEnd(ActionEvent event) throws IOException {
+        if (selectedProcess != null) {
+            main.openCreateActivity(selectedProcess, signedUser, 0);
+        }
+
+    }
+
 
     /**
      * This method opens the create task view
