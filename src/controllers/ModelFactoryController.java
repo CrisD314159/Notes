@@ -38,10 +38,10 @@ public class ModelFactoryController implements Runnable{
 		return getNotes().verifyUser(id, user);
 	}
 
-	public boolean createUser(String name, String id, String user, String password) {
+	public boolean createUser(String name, String id, String user, String password, Permissions permission) {
 		boolean trigger = false;
 		try {
-			trigger = getNotes().createUser(name, id, user, password);
+			trigger = getNotes().createUser(name, id, user, password, permission);
 			guardarResourceXML();
 		} catch (Exception e){
 			throw new RuntimeException(e);
@@ -103,10 +103,10 @@ public class ModelFactoryController implements Runnable{
 		return tasks;
 	}
 
-	public boolean createActivity(Process process, String name, String description, boolean mustDo) {
+	public boolean createActivity(Process process, String name, String description, boolean mustDo, int insertion) {
 		boolean trigger = false;
 		try {
-			trigger = getNotes().createActivity(process, name, description, mustDo);
+			trigger = getNotes().createActivity(process, name, description, mustDo, insertion);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -141,6 +141,18 @@ public class ModelFactoryController implements Runnable{
 	}
 	public boolean verifyAdminAccount(String user, String password) {
 		return getNotes().verifyAccountAdministrator(user, password);
+	}
+
+	public ArrayList<User> getUsersList() {
+		return notes.getUsersList();
+	}
+	public ArrayList<User> getUserAdminList(Admin signedAdmin) {
+		ArrayList<User> processes = new ArrayList<User>();
+		ListaSimple<User> lista = signedAdmin.getUsersList();
+		for (int i = 0; i <lista.getSize() ; i++) {
+			processes.add(lista.getNodeValue(i));
+		}
+		return processes;
 	}
 
 
@@ -188,6 +200,33 @@ public class ModelFactoryController implements Runnable{
 		return trigger;
 	}
 
+	public ArrayList<User> getUsersList() {
+		return getNotes().getUsersList();
+	}
+
+	public void deleteUser(User selecteduser) {
+		getNotes().deleteUser(selecteduser);
+	}
+
+	public boolean updateProcess(Process selectedProcess, String name, String id) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().updateProcess(selectedProcess, name, id);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public boolean updateUser(User selectedUser, String name, String id, String user, String password, Permissions permission) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().updateUser(selectedUser, name, id, user, password, permission);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
 
 
 	//------------------------------  Singleton ------------------------------------------------

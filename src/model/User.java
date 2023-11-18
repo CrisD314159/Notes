@@ -9,18 +9,40 @@ import java.util.Objects;
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
     private String name;
+    private Permissions permission;
     private String id;
     private Account account;
     private ListaSimple<Process> processList = new ListaSimple<Process>();
 
-    public User(String name, String id, Account account) {
+    private Integer size;
+
+    public User(String name, String id, Account account, Permissions permission) {
         this.name = name;
         this.id = id;
         this.account = account;
+        this.permission = permission;
+        this.size = processList.getSize();
     }
 
     public User() {
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public Permissions getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permissions permission) {
+        this.permission = permission;
     }
 
     public String getName() {

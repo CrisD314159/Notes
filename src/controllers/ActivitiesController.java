@@ -7,14 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import model.Activity;
+import model.*;
 import model.Process;
-import model.Task;
-import model.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ActivitiesController {
     private Process selectedProcess;
@@ -34,7 +30,11 @@ public class ActivitiesController {
     private TableView<Activity> activityTable;
 
     @FXML
-    private Button createActivityButton;
+    private Button createBeginingActivityButton;
+
+    @FXML
+    private Button createEndActivityButton;
+
 
     @FXML
     private Button createTaskButton;
@@ -87,17 +87,46 @@ public class ActivitiesController {
 
 
     /**
-     * This method opens the create activity view
+     * This method opens the create activity view to create a activity at the beginning
      * @param event
      * @throws IOException
      */
     @FXML
-    void createActivity(ActionEvent event) throws IOException {
-        if (selectedProcess != null) {
-            main.openCreateActivity(selectedProcess, signedUser);
+    void createActivityBegining(ActionEvent event) throws IOException {
+        if (signedUser.getPermission() == Permissions.EDIT) {
+            if (selectedProcess != null) {
+                main.openCreateActivity(selectedProcess, signedUser, 1);
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
+            alert.showAndWait();
         }
 
+
     }
+
+    /**
+     * This method opens the create activity view to create a activity at the end
+     * @param event
+     */
+    @FXML
+    void createActivityEnd(ActionEvent event) throws IOException {
+        if (signedUser.getPermission() == Permissions.EDIT){
+            if (selectedProcess != null) {
+                main.openCreateActivity(selectedProcess, signedUser, 0);
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
+            alert.showAndWait();
+        }
+
+
+    }
+
 
     /**
      * This method opens the create task view
@@ -106,7 +135,15 @@ public class ActivitiesController {
      */
     @FXML
     void createTaks(ActionEvent event) throws IOException {
-        main.openCreateTask(signedUser, selectedProcess, selectedActivity);
+        if (signedUser.getPermission() == Permissions.EDIT){
+            main.openCreateTask(signedUser, selectedProcess, selectedActivity);
+
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
+            alert.showAndWait();
+        }
 
     }
 
@@ -116,16 +153,24 @@ public class ActivitiesController {
      */
     @FXML
     void deleteActivity(ActionEvent event) {
-        if(selectedActivity.getTasksList().size() == 0){
-            boolean deleteActivity = singleton.deleteActivity(selectedProcess, selectedActivity);
-            if (deleteActivity) listaActividades.remove(selectedActivity);
-            activityTable.refresh();
+        if (signedUser.getPermission() == Permissions.EDIT){
+            if(selectedActivity.getTasksList().size() == 0){
+                boolean deleteActivity = singleton.deleteActivity(selectedProcess, selectedActivity);
+                if (deleteActivity) listaActividades.remove(selectedActivity);
+                activityTable.refresh();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Atención");
+                alert.setContentText("Para marcar como completada la actividad no debe tener ninguna tarea");
+                alert.showAndWait();
+            }
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Atención");
-            alert.setContentText("Para marcar como completada la actividad no debe tener ninguna tarea");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
             alert.showAndWait();
         }
+
 
     }
 
@@ -136,34 +181,58 @@ public class ActivitiesController {
      */
     @FXML
     void editActivity(ActionEvent event) throws IOException {
-        if (selectedActivity!= null){
-            main.openEditActivity(selectedActivity, selectedProcess, signedUser);
+        if (signedUser.getPermission() == Permissions.EDIT){
+            if (selectedActivity!= null){
+                main.openEditActivity(selectedActivity, selectedProcess, signedUser);
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
+            alert.showAndWait();
         }
+
 
     }
 
     @FXML
     void editTask(ActionEvent event) throws IOException {
-        if (selectedTask !=null){
-            main.openEditTask(selectedTask, selectedProcess, signedUser);
+        if (signedUser.getPermission() == Permissions.EDIT){
+            if (selectedTask !=null){
+                main.openEditTask(selectedTask, selectedProcess, signedUser);
 
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
+            alert.showAndWait();
         }
+
 
 
     }
 
     @FXML
     void markAsDone(ActionEvent event) {
-        if (singleton.isNextTask(selectedActivity, selectedTask)){
-            boolean task = singleton.markTaskAsDone(selectedActivity, selectedTask);
-            if (task) listaTareas.remove(selectedTask);
-            taskTable.refresh();
-        }else {
+        if (signedUser.getPermission() == Permissions.EDIT){
+            if (singleton.isNextTask(selectedActivity, selectedTask)){
+                boolean task = singleton.markTaskAsDone(selectedActivity, selectedTask);
+                if (task) listaTareas.remove(selectedTask);
+                taskTable.refresh();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Atención");
+                alert.setContentText("Para marcar como completada una tarea debe estar completada la que la precede");
+                alert.showAndWait();
+            }
+        }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Atención");
-            alert.setContentText("Para marcar como completada una tarea debe estar completada la que la precede");
+            alert.setContentText("No cuenta con los permisos para hacer esto");
             alert.showAndWait();
         }
+
 
     }
 
@@ -203,8 +272,6 @@ public class ActivitiesController {
         activityTable.getItems().clear();
         activityTable.setItems(getActivitiesList());
         taskTable.getItems().clear();
-
-
     }
 
     private ObservableList<Activity> getActivitiesList() {

@@ -4,7 +4,6 @@ import exceptions.UsuarioException;
 import lists.Cola;
 import lists.ListaSimple;
 
-import java.awt.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class Notes implements Serializable {
         Account a = new Account("pedro", "123");
         Account adm = new Account("juan", "345");
         Admin ad = new Admin("juan", "45", adm);
-        User p = new User("pedro", "12", a);
+        User p = new User("pedro", "12", a, Permissions.EDIT);
         Process p1 = new Process("01", "desayuno");
         Activity a1 = new Activity("cafe", "Preguntar por el cafe", false, false);
         Task t1 = new Task("Prepara el cafe", false, "5 minutos", true);
@@ -34,9 +33,12 @@ public class Notes implements Serializable {
         p1.setSize(p1.getSize() + 1);
 
         p.getProcessList().addToEnd(p1);
+        p.setSize(p.getSize()+1);
 
         getUsersList().add(p);
         getAdminList().add(ad);
+
+
     }
 
     public ArrayList<User> getUsersList() {
@@ -153,9 +155,10 @@ public class Notes implements Serializable {
      * @param id
      * @param user
      * @param password
+     * @param permission
      * @return
      */
-    public boolean createUser(String name, String id, String user, String password) {
+    public boolean createUser(String name, String id, String user, String password, Permissions permission) {
         User newUser = new User();
         Account account = new Account(user, password);
         try {
@@ -165,6 +168,8 @@ public class Notes implements Serializable {
                 newUser.setName(name);
                 newUser.setId(id);
                 newUser.setAccount(account);
+                newUser.setPermission(permission);
+                newUser.setSize(0);
                 getUsersList().add(newUser);
                 return true;
             }
@@ -217,6 +222,7 @@ public class Notes implements Serializable {
         Process process = new Process(id, name);
         if (verifyUser(signedUser.getId(), signedUser.getAccount().getUser())) {
             signedUser.getProcessList().addToEnd(process);
+            signedUser.setSize(signedUser.getSize()+1);
             return process;
         }
         return null;
@@ -231,11 +237,14 @@ public class Notes implements Serializable {
      * @param mustDo
      * @return
      */
-    public boolean createActivity(Process process, String name, String description, boolean mustDo) {
+    public boolean createActivity(Process process, String name, String description, boolean mustDo, int insertion) {
         Activity activity = new Activity(name, description, mustDo, false);
         if (process != null) {
             if (!verifyActivity(process, name)) {
-                process.getActivitiesList().addToEnd(activity);
+                switch (insertion) {
+                    case 1 -> process.getActivitiesList().agregarInicio(activity);
+                    case 0 -> process.getActivitiesList().addToEnd(activity);
+                }
                 process.setSize(process.getSize() + 1);
                 return true;
 
@@ -289,17 +298,29 @@ public class Notes implements Serializable {
         return false;
     }
 
+
+    //---------------------------------------Administrator CRUD ---------------------------------------------------------
+    public boolean verifyAccountAdministrator(String user, String password) {
+        for (Admin adminAux : adminList) {
+            Account auxAccount = adminAux.getAccount();
+            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
+
     private boolean verifyTask(Activity activity, String description) {
         Cola<Task> tasks = activity.getTasksList();
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.getNodeValue(i).getDescription().equals(description)) {
+
                 return true;
             }
         }
         return false;
     }
 
+
+    public boolean createTask(Activity activity, String description, String time, boolean mustDo){
+
     public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
+
         Task task = new Task(description, mustDo, time, false);
         setNotification(time, description);
 
@@ -313,12 +334,28 @@ public class Notes implements Serializable {
         return false;
     }
 
+
+
+    public boolean verifyAdmin(String id, String user) {
+        for (Admin adminAux : adminList) {
+            Account auxAccount = adminAux.getAccount();
+            if (adminAux.getId().equals(id) && auxAccount.getUser().equals(user)) {
+               return true;
+            }
+        }
+        return false;
+    }
+    private boolean verifyTask(Activity activity, String description) {
+        Cola<Task> tasks = activity.getTasksList();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.getNodeValue(i).getDescription().equals(description)) {
+
     private void setNotification(String time, String description) {
         System.out.println(time);
 
         Notificacion notificacion = new Notificacion(description);
         if (time.equals("1minuto")) {
-            notificacion.scheduleNotification(60000);
+            notificacion.scheduleNotification(10000);
         } else if (time.equals("2minutos")) {
             notificacion.scheduleNotification(2 * 60_000);
         } else if (time.equals("3minutos")) {
@@ -338,6 +375,7 @@ public class Notes implements Serializable {
         for (Admin adminAux : adminList) {
             Account auxAccount = adminAux.getAccount();
             if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
+
                 return true;
             }
         }
@@ -400,4 +438,28 @@ public class Notes implements Serializable {
         return false;
     }
 
+    public void deleteUser(User selecteduser) {
+        usersList.remove(selecteduser);
+    }
+
+    public boolean updateProcess(Process selectedProcess, String name, String id) {
+        if (selectedProcess != null) {
+            selectedProcess.setName(name);
+            selectedProcess.setId(id);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateUser(User selectedUser, String name, String id, String user, String password, Permissions permission) {
+        if (selectedUser!=null){
+            selectedUser.setName(name);
+            selectedUser.setId(id);
+            selectedUser.setPermission(permission);
+            selectedUser.getAccount().setUser(user);
+            selectedUser.getAccount().setPassword(password);
+            return true;
+        }
+        return false;
+    }
 }

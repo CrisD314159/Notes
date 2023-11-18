@@ -17,6 +17,8 @@ public class CreateActivityController {
     private Process process;
     private User signedUser;
 
+    private int insertion;
+
     ModelFactoryController singleton = ModelFactoryController.getInstance();
     @FXML
     private Button createButton;
@@ -47,7 +49,7 @@ public class CreateActivityController {
         name = nameField.getText();
         description = descriptionField.getText();
         if(!verifyFields(name, description)){
-            boolean activity = singleton.createActivity(process, name, description, mustDo);
+            boolean activity = singleton.createActivity(process, name, description, mustDo, insertion);
             if (activity) main.openActivitiesView(process, signedUser);
 
         }else {
@@ -87,5 +89,9 @@ public class CreateActivityController {
 
     public void setSignedUser(User signedUser) {
         this.signedUser = signedUser;
+    }
+
+    public void setInsertion(int insertion) {
+        this.insertion = insertion;
     }
 }

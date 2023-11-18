@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<<<<<<< HEAD
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="582.0" prefWidth="709.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorViewController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="83.0" prefWidth="679.0" style="-fx-background-color: #4f4e4e;">
+=======
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="582.0" prefWidth="556.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorViewController">
+<AnchorPane prefHeight="683.0" prefWidth="885.0" style="-fx-background-color: a5c9c3;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorViewController">
    <children>
-      <Pane layoutX="14.0" layoutY="14.0" prefHeight="83.0" prefWidth="533.0" style="-fx-background-color: #4f4e4e;">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="83.0" prefWidth="723.0" style="-fx-background-color: #4f4e4e;">
+>>>>>>> 2f1e6718c0e09ca2127ecea4c9e023c155ef4c6d
          <children>
-            <Label fx:id="lblAdministrator" layoutX="175.0" layoutY="25.0" prefHeight="27.0" prefWidth="92.0">
+            <Label fx:id="lblAdministrator" layoutX="290.0" layoutY="25.0" prefHeight="27.0" prefWidth="92.0">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>
@@ -25,7 +39,83 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Label layoutX="43.0" layoutY="28.0" text="Welcome Back">
+            <Label layoutX="43.0" layoutY="28.0" text="Welcome Back Administrator">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Button fx:id="gobackButton" layoutX="576.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" text="Atrás">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+<<<<<<< HEAD
+      <TableView fx:id="userTable" layoutX="14.0" layoutY="129.0" prefHeight="289.0" prefWidth="267.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="92.0" text="Nombre" />
+          <TableColumn fx:id="processNumberColumn" prefWidth="75.0" text="N. Procesos" />
+            <TableColumn fx:id="permissionColumn" prefWidth="98.0" text="Permiso" />
+        </columns>
+      </TableView>
+      <TableView fx:id="processTable" layoutX="363.0" layoutY="129.0" prefHeight="289.0" prefWidth="338.0">
+         <columns>
+            <TableColumn fx:id="processNameColumn" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="processIdColumn" prefWidth="138.0" text="Id" />
+            <TableColumn fx:id="activitiesNumberColumn" prefWidth="122.0" text="N. Actividades" />
+         </columns>
+      </TableView>
+      <Button fx:id="editUserButton" layoutX="30.0" layoutY="435.0" mnemonicParsing="false" onAction="#editUser" text="Editar usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="createUserButton" layoutX="31.0" layoutY="472.0" mnemonicParsing="false" onAction="#createUser" text="Crear usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteUserButton" layoutX="24.0" layoutY="513.0" mnemonicParsing="false" onAction="#deleteUser" text="Eliminar usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="createProcessButton" layoutX="162.0" layoutY="435.0" mnemonicParsing="false" onAction="#createProcess" text="Crear proceso">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="editProcessButton" layoutX="561.0" layoutY="435.0" mnemonicParsing="false" onAction="#editProcess" text="Editar proceso">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteProcessButton" layoutX="389.0" layoutY="435.0" mnemonicParsing="false" onAction="#deleteProcess" text="Eliminar proceso">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Line endX="-100.0" endY="465.0" layoutX="417.0" layoutY="117.0" startX="-100.0" startY="-20.0" />
+=======
+      <TableView fx:id="tblUsersAdmin" layoutX="33.0" layoutY="390.0" prefHeight="253.0" prefWidth="234.0">
+        <columns>
+          <TableColumn fx:id="columnNameUser" prefWidth="157.0" text="Nombre Usuario" />
+            <TableColumn fx:id="columnIDUser" prefWidth="75.0" text="ID " />
+        </columns>
+      </TableView>
+      <Separator layoutX="594.0" layoutY="98.0" orientation="VERTICAL" prefHeight="585.0" prefWidth="7.0" />
+      <Pane layoutX="609.0" layoutY="118.0" prefHeight="71.0" prefWidth="251.0" style="-fx-background-color: #4f4e4e;">
+         <children>
+            <Label layoutX="43.0" layoutY="28.0" text="¿Que Desea Realizar?">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>
@@ -40,5 +130,29 @@
             </Label>
          </children>
       </Pane>
+      <Pane layoutX="611.0" layoutY="203.0" prefHeight="452.0" prefWidth="251.0" style="-fx-background-color: #8BC4BA;">
+         <children>
+            <Button fx:id="verUserButton" layoutX="76.0" layoutY="58.0" mnemonicParsing="false" onAction="#seeUserAction" text="Ver Usuario" />
+            <Button fx:id="searchUserButton" layoutX="68.0" layoutY="118.0" mnemonicParsing="false" onAction="#searchUserAction" text="Buscar Usuario" />
+            <Button layoutX="68.0" layoutY="173.0" mnemonicParsing="false" text="Crear Proceso" />
+            <Button layoutX="89.0" layoutY="226.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </Pane>
+      <Label layoutX="55.0" layoutY="176.0" prefHeight="27.0" prefWidth="61.0" text="User:" />
+      <TextField fx:id="txtUserAdmin" layoutX="128.0" layoutY="176.0" />
+      <Label layoutX="55.0" layoutY="251.0" text="User ID:" />
+      <TextField fx:id="txtIDUserAdmin" layoutX="128.0" layoutY="245.0" />
+      <TableView fx:id="tblProcessUser" layoutX="326.0" layoutY="390.0" prefHeight="253.0" prefWidth="234.0">
+         <columns>
+            <TableColumn fx:id="columnProcesosUser" prefWidth="114.0" text="Procesos" />
+            <TableColumn fx:id="columnActividadesUser" prefWidth="120.0" text="Actividades" />
+         </columns>
+      </TableView>
+      <Button fx:id="backButton" layoutX="782.0" layoutY="42.0" mnemonicParsing="false" onAction="#BackAction1" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: rgb(182,234,255);" text="Salir">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+>>>>>>> 2f1e6718c0e09ca2127ecea4c9e023c155ef4c6d
    </children>
 </AnchorPane>

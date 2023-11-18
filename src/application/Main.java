@@ -110,7 +110,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void openCreateActivity(Process selectedProcess, User signedUser) throws IOException {
+    public void openCreateActivity(Process selectedProcess, User signedUser, int insertion) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateActivityView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
@@ -118,7 +118,9 @@ public class Main extends Application {
         CreateActivityController controller = fxmlLoader.getController();
         controller.setSelectedProcess(selectedProcess);
         controller.setSignedUser(signedUser);
+        controller.setInsertion(insertion);
         controller.setMain(this);
+
         //scene.getStylesheets().clear();
         // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
         //scene.setFill(Color.TRANSPARENT);
@@ -211,6 +213,79 @@ public class Main extends Application {
         //scene.getStylesheets().clear();
         // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
         //scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+<<<<<<< HEAD
+    public void openCreateProcess(User selecteduser, Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateProcessView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        CreateProcessController controller = fxmlLoader.getController();
+        controller.setSelectedUser(selecteduser);
+        controller.setSignedAdmin(signedAdmin);
+        controller.setMain(this);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void openCreateUser(Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/CreateUserView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        CreateUserController controller = fxmlLoader.getController();
+        controller.setSignedAdmin(signedAdmin);
+        controller.setMain(this);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void openEditProcess(Process selectedProcess, Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/EditProcessView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        EditProcessController controller = fxmlLoader.getController();
+        controller.setSelectedProcess(selectedProcess);
+        controller.setSignedAdmin(signedAdmin);
+        controller.setMain(this);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void openEditUser(User selecteduser, Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/EditUserView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+
+        EditUserController controller = fxmlLoader.getController();
+        controller.setSelectedUser(selecteduser);
+        controller.setSignedAdmin(signedAdmin);
+        controller.setMain(this);
+=======
+    public void administratorUserView(User selectedUser, Admin signedAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/AdministratorUserView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        AdministratorUserViewController controller = fxmlLoader.getController();
+        controller.setMain(this);
+        controller.setSelectedUser(selectedUser);
+        controller.setSelectedAdmin(signedAdmin);
+        //scene.getStylesheets().clear();
+        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../Stylesheets/Style.css")).toExternalForm());
+        //scene.setFill(Color.TRANSPARENT);
+>>>>>>> 2f1e6718c0e09ca2127ecea4c9e023c155ef4c6d
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.setResizable(false);
