@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="17.0.4.1" class="java.beans.XMLDecoder">
  <object class="model.Notes" id="Notes0">
+  <void property="processList">
+   <void property="size">
+    <int>3</int>
+   </void>
+  </void>
   <void id="ArrayList0" property="usersList">
    <void id="User0" index="0">
-    <void id="ListaSimple0" property="processList">
-     <void id="Integer0" property="size"/>
+    <void property="processList">
+     <void property="size">
+      <int>4</int>
+     </void>
     </void>
-   </void>
-   <void method="add">
-    <object class="model.User" id="User1">
-     <void property="account">
-      <object class="model.Account">
-       <void property="password">
-        <string>789</string>
-       </void>
-       <void property="user">
-        <string>Yuu</string>
-       </void>
-      </object>
-     </void>
-     <void property="id">
-      <string>68678</string>
-     </void>
-     <void property="name">
-      <string>Yuu</string>
-     </void>
-     <void property="processList">
-      <void property="size">
-       <object idref="Integer0"/>
-      </void>
-     </void>
-    </object>
    </void>
   </void>
  </object>
