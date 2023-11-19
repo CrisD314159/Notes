@@ -296,24 +296,11 @@ public class Notes implements Serializable {
 
 
     //---------------------------------------Administrator CRUD ---------------------------------------------------------
-    public boolean verifyAccountAdministrator(String user, String password) {
-        for (Admin adminAux : adminList) {
-            Account auxAccount = adminAux.getAccount();
-            if (auxAccount.getUser().equals(user) && auxAccount.getPassword().equals(password)) {
-
-    private boolean verifyTask(Activity activity, String description) {
-        Cola<Task> tasks = activity.getTasksList();
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.getNodeValue(i).getDescription().equals(description)) {
-
-                return true;
-            }
-        }
-        return false;
-    }
 
 
-    public boolean createTask(Activity activity, String description, String time, boolean mustDo){
+
+
+
 
     public boolean createTask(Activity activity, String description, String time, boolean mustDo) {
 
@@ -345,6 +332,12 @@ public class Notes implements Serializable {
         Cola<Task> tasks = activity.getTasksList();
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.getNodeValue(i).getDescription().equals(description)) {
+                return true;
+
+            }
+        }
+        return false;
+    }
 
     private void setNotification(String time, String description) {
         System.out.println(time);
@@ -422,16 +415,6 @@ public class Notes implements Serializable {
         return tasksList.getPrimero().getNodeValue().equals(selectedTask);
     }
 
-    public boolean verifyAdmin(String id, String user) {
-        System.out.println(adminList.toString());
-        for (Admin AdminAux : adminList) {
-            Account auxAccount = AdminAux.getAccount();
-            if (AdminAux.getId().equals(id) && auxAccount.getUser().equals(user)) {
-                return true;
-            }
 
-        }
-        return false;
-    }
 
 }
