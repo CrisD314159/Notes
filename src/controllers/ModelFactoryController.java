@@ -38,10 +38,10 @@ public class ModelFactoryController implements Runnable{
 		return getNotes().verifyUser(id, user);
 	}
 
-	public boolean createUser(String name, String id, String user, String password) {
+	public boolean createUser(String name, String id, String user, String password, Permission permission) {
 		boolean trigger = false;
 		try {
-			trigger = getNotes().createUser(name, id, user, password);
+			trigger = getNotes().createUser(name, id, user, password, permission);
 			guardarResourceXML();
 		} catch (Exception e){
 			throw new RuntimeException(e);
@@ -200,6 +200,29 @@ public class ModelFactoryController implements Runnable{
 		return trigger;
 	}
 
+	public void deleteUser(User selecteduser) {
+		getNotes().deleteUser(selecteduser);
+	}
+
+	public boolean updateProcess(Process selectedProcess, String name, String id) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().updateProcess(selectedProcess, name, id);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
+
+	public boolean updateUser(User selectedUser, String name, String id, String user, String password, Permission permission) {
+		boolean trigger = false;
+		try {
+			trigger = getNotes().updateUser(selectedUser, name, id, user, password, permission);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return trigger;
+	}
 
 
 	//------------------------------  Singleton ------------------------------------------------

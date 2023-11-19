@@ -12,19 +12,42 @@ public class User implements Serializable {
     private String name;
     private String id;
     private Account account;
+
+    private Permission permission;
+    private Integer size;
+
     private ListaSimple<Process> processList = new ListaSimple<Process>();
 
-    public User(String name, String id, Account account) {
+
+
+    public User(String name, String id, Account account, Permission permission) {
         this.name = name;
         this.id = id;
         this.account = account;
+        this.permission = permission;
     }
 
     public User() {
     }
 
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
     }
 
     public void setName(String name) {

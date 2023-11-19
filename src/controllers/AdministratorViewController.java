@@ -48,6 +48,15 @@ public class AdministratorViewController {
     private TableColumn<Process, String> columnProcesosUser;
 
     @FXML
+    private Button createUserButton;
+
+    @FXML
+    private Button deleteUserButton;
+
+    @FXML
+    private Button editUserButton;
+
+    @FXML
     private Label lblAdministrator1;
 
     @FXML
@@ -140,6 +149,33 @@ public class AdministratorViewController {
 
     @FXML
     void searchUserAction(ActionEvent event){
+
+    }
+    @FXML
+    void createUser(ActionEvent event) throws IOException {
+        main.openCreateUser(signedAdmin);
+
+    }
+
+    @FXML
+    void deleteUser(ActionEvent event) {
+        if (selectedUser!=null){
+            singleton.deleteUser(selectedUser);
+            tblUsersAdmin.getItems().clear();
+            tblUsersAdmin.getItems().addAll(singleton.getUsersList());
+            tblUsersAdmin.refresh();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setContentText("Para eliminar un usuario seleccione al menos uno");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    void editUser(ActionEvent event) throws IOException {
+        if (selectedUser!=null) main.openEditUser(selectedUser, signedAdmin);
 
     }
 

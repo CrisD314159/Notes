@@ -25,7 +25,7 @@ public class Notes implements Serializable {
         Account a = new Account("pedro", "123");
         Account adm = new Account("juan", "345");
         Admin ad = new Admin("juan", "45", adm);
-        User p = new User("pedro", "12", a);
+        User p = new User("pedro", "12", a, Permission.EDIT);
         Process p1 = new Process("01", "desayuno");
         Activity a1 = new Activity("cafe", "Preguntar por el cafe", false, false);
         Task t1 = new Task("Prepara el cafe", false, "5 minutos", true);
@@ -157,7 +157,7 @@ public class Notes implements Serializable {
      * @param password
      * @return
      */
-    public boolean createUser(String name, String id, String user, String password) {
+    public boolean createUser(String name, String id, String user, String password, Permission permission) {
         User newUser = new User();
         Account account = new Account(user, password);
         try {
@@ -167,6 +167,8 @@ public class Notes implements Serializable {
                 newUser.setName(name);
                 newUser.setId(id);
                 newUser.setAccount(account);
+                newUser.setPermission(permission);
+                newUser.setSize(0);
                 getUsersList().add(newUser);
                 return true;
             }
@@ -416,5 +418,28 @@ public class Notes implements Serializable {
     }
 
 
+    public void deleteUser(User selecteduser) {
+        usersList.remove(selecteduser);
+    }
 
+    public boolean updateProcess(Process selectedProcess, String name, String id) {
+        if (selectedProcess != null) {
+            selectedProcess.setName(name);
+            selectedProcess.setId(id);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateUser(User selectedUser, String name, String id, String user, String password, Permission permission) {
+        if (selectedUser!=null){
+            selectedUser.setName(name);
+            selectedUser.setId(id);
+            selectedUser.setPermission(permission);
+            selectedUser.getAccount().setUser(user);
+            selectedUser.getAccount().setPassword(password);
+            return true;
+        }
+        return false;
+    }
 }
