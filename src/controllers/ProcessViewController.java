@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import lists.ListaSimple;
+import model.Activity;
 import model.Permission;
 import model.Process;
 import model.User;
@@ -27,7 +30,7 @@ public class ProcessViewController {
 
 
     @FXML
-    private TableColumn<Process, String> activityNumberColumn;
+    private TableColumn<Process, Double> activityNumberColumn;
 
     @FXML
     private Button backButton;
@@ -57,7 +60,7 @@ public class ProcessViewController {
     private Button openProcess;
 
     @FXML
-    private TableColumn<Process, Integer> processNameColumn;
+    private TableColumn<Process, String> processNameColumn;
 
     @FXML
     private TableView<Process> processTable;
@@ -232,33 +235,61 @@ public class ProcessViewController {
 
     @FXML
     void ExcelImportAction(ActionEvent event) {
-
+        importFromExcel();
     }
 
     @FXML
-    void ExportExcelAction(ActionEvent event) {
+    void ExportExcelAction(ActionEvent event) throws IOException {
         exportToExcel();
     }
 
-    private void exportToExcel() {
+    private void exportToExcel() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Excel", "*.xlsx"));
         File selectedFile = fileChooser.showSaveDialog(null);
 
         if (selectedFile != null) {
             ObservableList<Process> data = processTable.getItems();
-            String[][] dataToExport = new String[data.size() + 1][3]; // +1 for header row
+
+            // Crear una matriz para almacenar los datos, incluido el encabezado check
+            String[][] dataToExport = new String[data.size() + 1][2]; // +1 for header row
             dataToExport[0] = new String[]{"Nombre Del Proceso", "Numero De Actividades"};
 
+            // Llenar la matriz con datos de la lista
             for (int i = 0; i < data.size(); i++) {
                 Process process = data.get(i);
                 dataToExport[i + 1] = new String[]{process.getName(), process.getId()};
             }
 
-            ExcelUtil.exportToExcel(dataToExport, selectedFile.getAbsolutePath());
+            // Utilizar la clase ExcelUtil para exportar los datos
+            ExcelUtil.exportToExcel(singleton.getNotes().getProcessList(), dataToExport, selectedFile.getAbsolutePath());
         }
     }
 
+    private void importFromExcel() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Excel", "*.xlsx"));
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
 
+        if (selectedFile != null) {
+            ListaSimple<Process> importedDataList = ExcelUtil.importFromExcel(selectedFile.getAbsolutePath());
 
+            // Ahora, podrías convertir la ListaSimple a un formato adecuado para tu tabla
+            // Esto depende de la estructura de tu modelo de datos (YourDataModel)
+
+            ObservableList<Process> importedData = FXCollections.observableArrayList();
+
+            // Recorre la ListaSimple y agrega los elementos a la ObservableList
+            for (int i = 0; i < importedDataList.getSize(); i++) {
+                Process dataModel = importedDataList.getNodeValue(i);
+
+                // Verifica si el nombre es "Numero De Actividades", que indica un encabezado
+                if (!dataModel.getName().equals("Numero De Actividades")) {
+                    importedData.add(dataModel);
+                }
+            }
+
+            processTable.setItems(importedData);
+        }
+    }
 }
